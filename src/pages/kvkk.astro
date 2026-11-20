@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { clinic, fullAddress } from '../data/clinic';
+---
+<Base
+  title="KVKK Aydınlatma Metni | Lupus Veteriner Kliniği"
+  description="Lupus Veteriner Kliniği web sitesi kişisel verilerin korunması aydınlatma metni: hangi veriler işlenir, çerez kullanımı ve başvuru hakları."
+  breadcrumbs={[{ name: 'KVKK', url: '/kvkk' }]}
+>
+  <section class="wrap pt-8">
+    <h1>KVKK aydınlatma metni</h1>
+    <div class="prose-lupus measure mt-8">
+      <p>Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında, {clinic.name} ({fullAddress}) tarafından web sitesi ziyaretçilerini bilgilendirmek için hazırlanmıştır.</p>
+      <h2>Hangi veriler işlenir?</h2>
+      <p>Bu sitede form bulunmaz ve sitemiz üzerinden ad, telefon veya e-posta gibi kişisel veri toplanmaz. Sitede çerez (cookie) kullanılmaz.</p>
+      <p>Ziyaret istatistikleri, barındırma hizmeti sağlayıcımız Vercel’in çerezsiz analiz aracıyla, kişiyi tanımlamayan toplu veriler (sayfa görüntülenme sayısı, ülke, cihaz türü) olarak tutulur.</p>
+      <h2>Üçüncü taraf bağlantıları</h2>
+      <p>Randevu bağlantıları Vetimiz’e, harita Google Haritalar’a, sosyal medya bağlantıları Instagram’a yönlendirir. Bu sitelerde paylaştığınız veriler ilgili sitenin kendi gizlilik politikasına tabidir. Harita, siz “Haritayı göster” düğmesine basana kadar yüklenmez.</p>
+      <h2>Haklarınız</h2>
+      <p>KVKK’nın 11. maddesi kapsamındaki haklarınızla ilgili başvurularınızı kliniğimize yazılı olarak iletebilir veya {clinic.phone} numaralı telefondan bize ulaşabilirsiniz.</p>
+    </div>
+  </section>
+</Base>

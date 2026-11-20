@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/alegreya';
+@import '@fontsource/alegreya-sans/latin-400.css';
+@import '@fontsource/alegreya-sans/latin-ext-400.css';
+@import '@fontsource/alegreya-sans/latin-500.css';
+@import '@fontsource/alegreya-sans/latin-ext-500.css';
+@import '@fontsource/alegreya-sans/latin-700.css';
+@import '@fontsource/alegreya-sans/latin-ext-700.css';
+
+/* Renkler logodan: lacivert silüet, kırmızı LUPUS bandı, yaprak yeşili. */
+@theme {
+  --color-ink: #19223d;
+  --color-navy: #243266;
+  --color-navy-deep: #18224a;
+  --color-red: #c0303a;
+  --color-red-dark: #9e2530;
+  --color-leaf: #4c7a3a;
+  --color-paper: #f7f8f6;
+  --color-mist: #e7ecf0;
+  --color-line: #d5dce3;
+  --color-muted: #5a6478;
+
+  --font-serif: 'Alegreya Variable', Georgia, serif;
+  --font-sans: 'Alegreya Sans', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body { min-height: 100dvh; }
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    color: var(--color-navy-deep);
+  }
+  h1 { font-size: clamp(2.3rem, 5.2vw, 4.1rem); }
+  h2 { font-size: clamp(1.75rem, 3.2vw, 2.6rem); }
+  h3 { font-size: 1.35rem; }
+  p { text-wrap: pretty; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--color-red); outline-offset: 3px; border-radius: 4px; }
+  ::selection { background: var(--color-navy); color: white; }
+}
+
+@layer components {
+  .wrap { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+  .measure { max-width: 38rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .55rem;
+    padding: .8rem 1.35rem; border-radius: 999px;
+    font-weight: 700; font-size: 1.05rem; text-decoration: none;
+    transition: background-color .15s ease, transform .1s ease;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-red { background: var(--color-red); color: white; }
+  .btn-red:hover { background: var(--color-red-dark); }
+  .btn-line { border: 2px solid currentColor; padding: calc(.8rem - 2px) calc(1.35rem - 2px); }
+  .btn-line:hover { background: color-mix(in srgb, currentColor 8%, transparent); }
+
+  .link { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
+  .link:hover { text-decoration-color: currentColor; }
+
+  /* Uzun metin (hizmet ve blog içerikleri) */
+  .prose-lupus { font-size: 1.15rem; line-height: 1.7; }
+  .prose-lupus > * + * { margin-top: 1.1em; }
+  .prose-lupus h2 { font-size: 1.75rem; margin-top: 2.2em; }
+  .prose-lupus h3 { font-size: 1.3rem; margin-top: 1.8em; }
+  .prose-lupus ul { list-style: disc; padding-left: 1.3em; }
+  .prose-lupus ol { list-style: decimal; padding-left: 1.4em; }
+  .prose-lupus li + li { margin-top: .35em; }
+  .prose-lupus a { color: var(--color-navy); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-lupus strong { color: var(--color-navy-deep); }
+  .prose-lupus figure img { border-radius: 14px; }
+  .prose-lupus figcaption { font-size: .95rem; color: var(--color-muted); margin-top: .5rem; }
+  .prose-lupus blockquote { border-left: 3px solid var(--color-leaf); padding-left: 1rem; font-family: var(--font-serif); font-style: italic; font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

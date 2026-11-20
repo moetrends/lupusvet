@@ -1,0 +1,25 @@
+---
+import { clinic, telHref } from '../data/clinic';
+---
+<nav aria-label="Hızlı iletişim" class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+  <ul class="grid grid-cols-3 text-center text-[.95rem] font-bold">
+    <li>
+      <a href={telHref} class="flex flex-col items-center gap-1 py-2.5 text-navy no-underline">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        Ara
+      </a>
+    </li>
+    <li>
+      <a href={clinic.directionsUrl} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 py-2.5 text-navy no-underline">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        Yol tarifi
+      </a>
+    </li>
+    <li>
+      <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 bg-red py-2.5 text-white no-underline">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Randevu
+      </a>
+    </li>
+  </ul>
+</nav>

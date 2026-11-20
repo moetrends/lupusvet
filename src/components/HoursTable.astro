@@ -1,0 +1,27 @@
+---
+import { clinic } from '../data/clinic';
+interface Props { dark?: boolean }
+const { dark = false } = Astro.props;
+---
+<table class="w-full max-w-sm text-left">
+  <tbody>
+    {clinic.hours.map((h) => (
+      <tr class:list={['border-b', dark ? 'border-white/10' : 'border-line']}>
+        <th scope="row" class="py-2 pr-4 font-normal">{h.label}</th>
+        <td class="py-2 text-right font-bold tabular-nums">{h.opens} – {h.closes}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+<p class:list={['mt-2 text-[.95rem]', dark ? 'text-white/65' : 'text-muted']} data-open-status></p>
+<script>
+  // Klinik şu an açık mı? (Türkiye saati, UTC+3)
+  const el = document.querySelectorAll<HTMLElement>('[data-open-status]');
+  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
+  const day = now.getDay();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  const [o, c] = day === 0 ? [12 * 60, 16 * 60 + 30] : [9 * 60, 19 * 60 + 30];
+  const open = mins >= o && mins < c;
+  const text = open ? `Şu an açık · ${day === 0 ? '16:30' : '19:30'}’a kadar` : 'Şu an kapalı';
+  el.forEach((e) => { e.textContent = text; e.dataset.state = open ? 'open' : 'closed'; });
+</script>

@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PatientWall from '../components/PatientWall.astro';
+import ReviewList from '../components/ReviewList.astro';
+import HoursTable from '../components/HoursTable.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { clinic, fullAddress, telHref } from '../data/clinic';
+import { personSchema } from '../lib/schema';
+import hero from '../assets/photos/yunus-kurt-kedi-yavrusu.jpg';
+import vetPhoto from '../assets/photos/yunus-kurt-golden.jpg';
+import clinicPhoto from '../assets/photos/klinik-ic-resepsiyon.jpg';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+const years = new Date().getFullYear() - clinic.founded;
+---
+<Base
+  title="Lupus Veteriner Kliniği | Çukurova, Adana Veteriner Hekim Yunus Kurt"
+  description="Çukurova Mavi Bulvar'da kedi ve köpekler için muayene, cerrahi, ortopedi, ultrason, röntgen ve laboratuvar. Veteriner Hekim Yunus Kurt. Randevu: 0537 211 50 05."
+  image={hero}
+  schema={[personSchema()]}
+>
+  <!-- Hero -->
+  <section class="wrap grid items-center gap-10 pt-10 pb-16 md:grid-cols-[1.05fr_1fr] md:gap-14 md:pt-16">
+    <div class="order-2 md:order-1">
+      <h1>Çukurova’da kedi ve köpeklerin hekimi, {clinic.founded}’dan beri.</h1>
+      <p class="measure mt-6 text-[1.25rem] leading-relaxed text-ink/85">
+        Mavi Bulvar’daki kliniğimizde muayene, cerrahi, görüntüleme ve laboratuvar aynı çatı altında.
+        Dostunuzla Veteriner Hekim Yunus Kurt ve ekibi ilgileniyor.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
+        <a href={telHref} class="btn btn-line text-navy">Ara: {clinic.phone}</a>
+      </div>
+      <a href="/yorumlar" class="mt-8 inline-flex items-center gap-3 no-underline">
+        <span class="font-serif text-4xl font-semibold text-navy-deep">{clinic.rating.value.toLocaleString('tr-TR')}</span>
+        <span class="leading-tight text-muted"><span class="text-red" aria-hidden="true">★★★★★</span><br /><span class="link">Google’da {clinic.rating.count} yorum</span></span>
+      </a>
+    </div>
+    <figure class="relative order-1 md:order-2">
+      <Image src={hero} alt="Veteriner Hekim Yunus Kurt kucağında bir kedi yavrusuyla" widths={[480, 720, 960]} sizes="(min-width: 768px) 46vw, 100vw" loading="eager" fetchpriority="high" class="aspect-[4/5] w-full rounded-[36px_36px_36px_120px] object-cover object-top md:rounded-[40px_40px_40px_160px]" />
+      <figcaption class="absolute -bottom-4 left-6 rounded-full bg-white px-4 py-2 text-[.95rem] shadow-md md:left-auto md:right-6">Vet. Hek. Yunus Kurt</figcaption>
+    </figure>
+  </section>
+
+  <!-- Bilgi şeridi -->
+  <section aria-label="Adres ve saatler" class="border-y border-line bg-white">
+    <div class="wrap grid gap-8 py-8 md:grid-cols-3">
+      <div>
+        <h2 class="!text-xl">Adres</h2>
+        <p class="mt-2">{fullAddress}</p>
+        <a href={clinic.directionsUrl} target="_blank" rel="noopener" class="link mt-1 inline-block font-bold text-navy">Yol tarifi al</a>
+      </div>
+      <div>
+        <h2 class="!text-xl">Çalışma saatleri</h2>
+        <div class="mt-1"><HoursTable /></div>
+      </div>
+      <div>
+        <h2 class="!text-xl">Telefon ve WhatsApp</h2>
+        <p class="mt-2"><a href={telHref} class="text-2xl font-bold text-navy no-underline">{clinic.phone}</a></p>
+        <a href={clinic.whatsapp} target="_blank" rel="noopener" class="link mt-1 inline-block">WhatsApp’tan yazın</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hizmetler -->
+  <section class="wrap mt-20" aria-labelledby="hizmetler-baslik">
+    <div class="grid gap-6 md:grid-cols-[1fr_2fr] md:gap-14">
+      <div>
+        <h2 id="hizmetler-baslik">Hizmetlerimiz</h2>
+        <p class="mt-4 text-ink/80">Koruyucu muayeneden ortopedik cerrahiye kadar. Tahlil ve görüntülemenin çoğu klinik içinde, aynı gün yapılıyor.</p>
+        <a href="/hizmetler" class="link mt-4 inline-block font-bold text-navy">Tüm hizmetler</a>
+      </div>
+      <ul class="grid border-t border-line sm:grid-cols-2 sm:gap-x-10">
+        {services.map((s) => (
+          <li class="border-b border-line">
+            <a href={`/hizmetler/${s.id}`} class="group block py-4 no-underline">
+              <span class="font-serif text-[1.35rem] font-semibold text-navy-deep group-hover:text-red">{s.data.title}</span>
+              <span class="mt-1 block text-[.98rem] leading-snug text-muted">{s.data.includes.slice(0, 3).join(', ')}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Hekim -->
+  <section class="mt-24 bg-mist py-20">
+    <div class="wrap grid items-center gap-10 md:grid-cols-[1fr_1.15fr] md:gap-16">
+      <Image src={vetPhoto} alt="Veteriner Hekim Yunus Kurt bir köpekle klinikte" widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" class="aspect-[4/5] w-full rounded-[28px] object-cover" loading="lazy" />
+      <div>
+        <h2>Veteriner Hekim Yunus Kurt</h2>
+        <p class="measure mt-5 text-[1.2rem] leading-relaxed">
+          Lupus’u {clinic.founded}’da Mavi Bulvar’da kurdu. {years} yıldır Çukurova’daki kedi ve köpeklerin aşısından ameliyatına kadar her aşamasında yanlarında.
+          Hasta sahiplerimizin yorumlarında en çok geçen kelimeler “ilgili” ve “vicdanlı”.
+        </p>
+        <a href="/veteriner-hekim-yunus-kurt" class="btn btn-line mt-7 text-navy">Hekimimizi tanıyın</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hasta duvarı -->
+  <section class="wrap mt-24" aria-labelledby="dostlar-baslik">
+    <div class="mb-10 max-w-2xl">
+      <h2 id="dostlar-baslik">Muayene masamızdan geçenler</h2>
+      <p class="mt-4 text-ink/80">Hepsi gerçek hastalarımız. Daha fazlası ve vaka hikâyeleri <a href={clinic.instagramUrl} target="_blank" rel="noopener" class="link font-bold text-navy">Instagram hesabımızda</a>.</p>
+    </div>
+    <PatientWall />
+  </section>
+
+  <!-- Yorumlar -->
+  <section class="wrap mt-24" aria-labelledby="yorum-baslik">
+    <h2 id="yorum-baslik" class="mb-10">Hasta sahiplerimiz ne diyor?</h2>
+    <ReviewList limit={3} />
+  </section>
+
+  <!-- Blog -->
+  {posts.length > 0 && (
+    <section class="wrap mt-24" aria-labelledby="blog-baslik">
+      <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <h2 id="blog-baslik">Blogdan</h2>
+        <a href="/blog" class="link font-bold text-navy">Tüm yazılar</a>
+      </div>
+      <ul class="grid gap-10 md:grid-cols-3">
+        {posts.map((p) => (
+          <li>
+            <a href={`/blog/${p.id}`} class="group block no-underline">
+              <Image src={p.data.hero} alt={p.data.heroAlt} widths={[400, 640]} sizes="(min-width: 768px) 30vw, 100vw" class="aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+              <p class="mt-4 text-[.95rem] text-muted">{p.data.category === 'vaka' ? 'Vaka' : 'Bilgi'}</p>
+              <h3 class="mt-1 group-hover:text-red">{p.data.title}</h3>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <!-- Konum -->
+  <section class="wrap mt-24 grid gap-10 md:grid-cols-[1fr_1.4fr]" aria-labelledby="konum-baslik">
+    <div>
+      <h2 id="konum-baslik">Bizi nasıl bulursunuz?</h2>
+      <p class="mt-4">{fullAddress}</p>
+      <p class="mt-2 text-muted">{clinic.address.landmark}.</p>
+      <Image src={clinicPhoto} alt="Lupus Veteriner Kliniği resepsiyon ve bekleme alanı" widths={[400, 640]} sizes="(min-width: 768px) 35vw, 100vw" class="mt-6 aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+    </div>
+    <MapEmbed />
+  </section>
+
+  <CtaBand />
+</Base>

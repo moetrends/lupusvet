@@ -1,0 +1,33 @@
+---
+// Muayene masamızdan geçen gerçek hastalarımız (Instagram ve Google Haritalar fotoğrafları).
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+const all = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/hasta-*.jpg', { eager: true });
+const alts: Record<string, string> = {
+  'hasta-toy-poodle': 'Muayene masasında kahverengi bir toy poodle',
+  'hasta-siyam': 'Taşıma çantasında bekleyen bir Siyam kedisi',
+  'hasta-pitbull': 'Klinikte bekleyen kahverengi bir köpek',
+  'hasta-beyaz-iran': 'Muayene masasında beyaz bir İran kedisi',
+  'hasta-british-yavru': 'Taşıma çantasında bir British kedi yavrusu',
+  'hasta-maltese': 'Muayene masasında beyaz bir Maltese',
+  'hasta-french-bulldog': 'Taşıma kafesinde siyah bir French Bulldog',
+  'hasta-yavru-kopek': 'Muayene masasında beyaz bir yavru köpek',
+  'hasta-kedi': 'Kanepede dinlenen alaca bir kedi',
+  'hasta-sfenks': 'Kazak giymiş bir kedi',
+  'hasta-chow-chow': 'Muayene masasında oturan bir Chow Chow',
+  'hasta-scottish-beyaz': 'Beyaz bir Scottish Fold kedi',
+  'hasta-cicek': 'Kliniğin kedisi Çiçek pencerede',
+};
+const order = Object.keys(alts);
+const photos = order
+  .map((name) => ({ name, img: all[`../assets/photos/${name}.jpg`]?.default }))
+  .filter((p) => p.img);
+const tilt = ['-rotate-2', 'rotate-1', '-rotate-1', 'rotate-2', 'rotate-0', '-rotate-[1.5deg]'];
+---
+<ul class="columns-2 gap-4 sm:columns-3 lg:columns-4 [&>li]:mb-4">
+  {photos.map((p, i) => (
+    <li class:list={['break-inside-avoid rounded-[6px] bg-white p-2 pb-3 shadow-[0_1px_2px_rgba(25,34,61,.12),0_8px_24px_-12px_rgba(25,34,61,.25)] transition-transform duration-300 hover:rotate-0', tilt[i % tilt.length]]}>
+      <Image src={p.img!} alt={alts[p.name]} widths={[280, 420]} sizes="(min-width: 1024px) 260px, (min-width: 640px) 30vw, 45vw" class="w-full rounded-[3px]" loading="lazy" />
+    </li>
+  ))}
+</ul>

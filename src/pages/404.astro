@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import { clinic, telHref } from '../data/clinic';
+---
+<Base title="Sayfa bulunamadı | Lupus Veteriner" description="Aradığınız sayfa taşınmış veya kaldırılmış olabilir. Ana sayfaya dönebilir ya da Lupus Veteriner Kliniği'ni arayabilirsiniz.">
+  <section class="wrap py-24">
+    <h1>Bu sayfa burada değil</h1>
+    <p class="measure mt-5 text-[1.2rem]">Bağlantı eski olabilir. Aradığınızı ana sayfadan veya hizmetler listesinden bulabilirsiniz.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/" class="btn btn-red">Ana sayfaya dön</a>
+      <a href="/hizmetler" class="btn btn-line text-navy">Hizmetler</a>
+      <a href={telHref} class="btn btn-line text-navy">{clinic.phone}</a>
+    </div>
+  </section>
+</Base>

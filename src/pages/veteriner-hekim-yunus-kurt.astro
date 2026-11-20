@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import ReviewList from '../components/ReviewList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { clinic } from '../data/clinic';
+import { personSchema } from '../lib/schema';
+import portrait from '../assets/photos/yunus-kurt-klinik-pomeranian.jpg';
+import p1 from '../assets/photos/yunus-kurt-iran-kedisi.jpg';
+import p2 from '../assets/photos/yunus-kurt-french-bulldog.jpg';
+import p3 from '../assets/photos/yunus-kurt-scottish-fold.jpg';
+import p4 from '../assets/photos/yunus-kurt-rottweiler.jpg';
+import p5 from '../assets/photos/yunus-kurt-cavalier.jpg';
+import p6 from '../assets/photos/yunus-kurt-doberman.jpg';
+import exam from '../assets/photos/muayene-masasi.jpg';
+
+const gallery = [
+  { src: p1, alt: 'Yunus Kurt kucağında beyaz bir İran kedisi' },
+  { src: p2, alt: 'Yunus Kurt kucağında bir French Bulldog' },
+  { src: p3, alt: 'Yunus Kurt kucağında bir Scottish Fold kedi' },
+  { src: p4, alt: 'Yunus Kurt bir Rottweiler ile klinik önünde' },
+  { src: p5, alt: 'Yunus Kurt bir Cavalier King Charles ile' },
+  { src: p6, alt: 'Yunus Kurt bir Doberman ile' },
+];
+const v = clinic.vet;
+const years = new Date().getFullYear() - clinic.founded;
+---
+<Base
+  title="Veteriner Hekim Yunus Kurt | Lupus Veteriner Kliniği Çukurova"
+  description="Lupus Veteriner Kliniği'nin kurucusu Veteriner Hekim Yunus Kurt. 2019'dan beri Çukurova Mavi Bulvar'da kedi ve köpeklere muayene, cerrahi ve ortopedi."
+  image={portrait}
+  breadcrumbs={[{ name: 'Hekimimiz', url: '/veteriner-hekim-yunus-kurt' }]}
+  schema={[personSchema()]}
+>
+  <section class="wrap grid items-center gap-10 pt-8 md:grid-cols-[1fr_1.1fr] md:gap-16">
+    <Image src={portrait} alt="Veteriner Hekim Yunus Kurt klinikte bir Pomeranian ile" widths={[480, 720, 960]} sizes="(min-width: 768px) 42vw, 100vw" loading="eager" class="aspect-[4/5] w-full rounded-[32px] object-cover" />
+    <div>
+      <h1>Veteriner Hekim Yunus Kurt</h1>
+      <p class="mt-3 text-[1.15rem] text-muted">Lupus Veteriner Kliniği kurucusu</p>
+      <div class="prose-lupus measure mt-7">
+        <p>Yunus Kurt, Lupus Veteriner Kliniği’ni {clinic.founded} yılında Çukurova’da, Mavi Bulvar üzerinde açtı. O günden bu yana {years} yıldır mahallenin kedi ve köpekleriyle, aşı takviminden ortopedik ameliyatlara kadar her aşamada ilgileniyor.</p>
+        <p>Klinikte kısırlaştırma ve yumuşak doku cerrahisinden kırık tedavisine, entropion gibi göz kapağı operasyonlarından ultrason ve ekokardiyografiye kadar geniş bir alanda çalışıyor. Instagram’da paylaştığı vaka hikâyeleri ve bilgilendirici videolarla hasta sahiplerinin sorularını yanıtlıyor.</p>
+        {v.alumniOf && <p>{v.alumniOf} mezunu{v.graduationYear ? ` (${v.graduationYear})` : ''}.</p>}
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
+        <a href={v.instagram} target="_blank" rel="noopener" class="btn btn-line text-navy">Instagram: @ykurtt</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap mt-24">
+    <h2>Çalışma alanları</h2>
+    <ul class="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+      <li><a href="/hizmetler/cerrahi" class="font-serif text-xl font-semibold text-navy-deep no-underline hover:text-red">Cerrahi ve kısırlaştırma</a><p class="mt-1 text-muted">Kedi ve köpek kısırlaştırma, kriptorşidizm, tümör ve fıtık operasyonları.</p></li>
+      <li><a href="/hizmetler/ortopedi-ve-travmatoloji" class="font-serif text-xl font-semibold text-navy-deep no-underline hover:text-red">Ortopedi</a><p class="mt-1 text-muted">Kırıklar, eksternal fiksatör, çapraz bağ, yüksekten düşme travmaları.</p></li>
+      <li><a href="/hizmetler/ekokardiyografi" class="font-serif text-xl font-semibold text-navy-deep no-underline hover:text-red">Kalp ve görüntüleme</a><p class="mt-1 text-muted">Ekokardiyografi, ultrasonografi ve röntgen ile aynı gün tanı.</p></li>
+    </ul>
+  </section>
+
+  <section class="mt-24 bg-mist py-20">
+    <div class="wrap">
+      <h2 class="max-w-2xl">Hastalarıyla</h2>
+      <ul class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
+        {gallery.map((g) => (
+          <li><Image src={g.src} alt={g.alt} widths={[320, 520]} sizes="(min-width: 768px) 30vw, 48vw" class="aspect-square w-full rounded-[18px] object-cover" loading="lazy" /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap mt-24 grid items-center gap-10 md:grid-cols-[1.2fr_1fr]">
+    <div>
+      <h2>Bir muayene nasıl geçer?</h2>
+      <ol class="prose-lupus mt-6">
+        <li>Dostunuzun şikayetini ve geçmişini sizinle konuşuyoruz.</li>
+        <li>Tartı, ateş ve baştan kuyruğa fizik muayene yapıyoruz.</li>
+        <li>Gerekirse tahlil ve görüntülemeyi klinik içinde, aynı gün yapıyoruz.</li>
+        <li>Bulguları size gösteriyor, tedavi seçeneklerini ve maliyetini açıkça anlatıyoruz.</li>
+      </ol>
+    </div>
+    <Image src={exam} alt="Yunus Kurt muayene masasında bir hastayı inceliyor" widths={[480, 720]} sizes="(min-width: 768px) 40vw, 100vw" class="aspect-[4/3] w-full rounded-[24px] object-cover" loading="lazy" />
+  </section>
+
+  <section class="wrap mt-24">
+    <h2 class="mb-10">Hasta sahipleri anlatıyor</h2>
+    <ReviewList limit={3} />
+  </section>
+
+  <CtaBand />
+</Base>

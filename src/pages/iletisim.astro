@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import HoursTable from '../components/HoursTable.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import { clinic, fullAddress, telHref } from '../data/clinic';
+---
+<Base
+  title="İletişim ve Yol Tarifi | Lupus Veteriner Kliniği Çukurova"
+  description="Lupus Veteriner Kliniği: Toros Mah. Mavi Bulvarı No:62/B Çukurova/Adana. Telefon 0537 211 50 05. Pazartesi-Cumartesi 09:00-19:30, Pazar 12:00-16:30."
+  breadcrumbs={[{ name: 'İletişim', url: '/iletisim' }]}
+>
+  <section class="wrap pt-8">
+    <h1>İletişim</h1>
+  </section>
+  <section class="wrap mt-10 grid gap-12 md:grid-cols-[1fr_1.4fr]">
+    <div class="space-y-9">
+      <div>
+        <h2 class="!text-2xl">Telefon</h2>
+        <a href={telHref} class="mt-2 inline-block text-3xl font-bold text-navy no-underline">{clinic.phone}</a>
+        <p class="mt-1"><a href={clinic.whatsapp} target="_blank" rel="noopener" class="link">WhatsApp’tan yazın</a></p>
+      </div>
+      <div>
+        <h2 class="!text-2xl">Adres</h2>
+        <address class="mt-2 not-italic">{clinic.name}<br />{fullAddress}</address>
+        <p class="mt-1 text-muted">{clinic.address.landmark}.</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href={clinic.directionsUrl} target="_blank" rel="noopener" class="btn btn-red">Yol tarifi al</a>
+          <a href={clinic.mapsCidUrl} target="_blank" rel="noopener" class="btn btn-line text-navy">Google Haritalar’da aç</a>
+        </div>
+      </div>
+      <div>
+        <h2 class="!text-2xl">Çalışma saatleri</h2>
+        <div class="mt-2"><HoursTable /></div>
+      </div>
+      <div>
+        <h2 class="!text-2xl">Randevu</h2>
+        <p class="mt-2">Randevularımızı Vetimiz üzerinden alıyoruz.</p>
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="link mt-1 inline-block font-bold text-navy">Vetimiz’den randevu al</a>
+      </div>
+    </div>
+    <MapEmbed />
+  </section>
+</Base>

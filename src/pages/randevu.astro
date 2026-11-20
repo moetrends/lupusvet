@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import HoursTable from '../components/HoursTable.astro';
+import { clinic, telHref } from '../data/clinic';
+---
+<Base
+  title="Online Randevu Al | Lupus Veteriner Kliniği Çukurova Adana"
+  description="Lupus Veteriner Kliniği'nden Vetimiz üzerinden online randevu alın veya 0537 211 50 05'i arayın. Acil durumlarda randevusuz gelebilirsiniz."
+  breadcrumbs={[{ name: 'Randevu', url: '/randevu' }]}
+>
+  <section class="wrap pt-8">
+    <div class="max-w-2xl">
+      <h1>Randevu alın</h1>
+      <p class="mt-5 text-[1.2rem] text-ink/85">
+        Online randevularımızı Vetimiz üzerinden alıyoruz. Açılan sayfada dostunuzun bilgilerini paylaşabilir, size uygun saati seçebilirsiniz.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red !px-7 !py-4 !text-lg">Vetimiz’de randevu al</a>
+        <a href={telHref} class="btn btn-line text-navy !px-7 !py-4 !text-lg">Telefonla: {clinic.phone}</a>
+      </div>
+      <p class="mt-6 text-muted">Acil bir durumda randevu beklemeyin, doğrudan arayın veya kliniğe gelin.</p>
+    </div>
+    <div class="mt-14 max-w-sm">
+      <h2 class="!text-2xl">Çalışma saatleri</h2>
+      <div class="mt-2"><HoursTable /></div>
+    </div>
+  </section>
+</Base>

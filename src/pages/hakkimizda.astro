@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PatientWall from '../components/PatientWall.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { clinic, fullAddress } from '../data/clinic';
+import entrance from '../assets/photos/klinik-giris-french-bulldog.jpg';
+import reception from '../assets/photos/klinik-ic-resepsiyon.jpg';
+import shop from '../assets/photos/klinik-ic-magaza.jpg';
+import xray from '../assets/photos/rontgen-olcum.jpg';
+import usg from '../assets/photos/ultrason-kedi.jpg';
+import lab from '../assets/photos/laboratuvar-boyama.jpg';
+
+const equipment = [
+  { img: xray, alt: 'Ölçümlü bir kedi pati röntgeni', title: 'Röntgen', text: 'Kırık, yabancı cisim ve taş tespiti için klinik içinde çekim.' },
+  { img: usg, alt: 'Kedi karın ultrasonu yapılırken', title: 'Ultrason ve ekokardiyografi', text: 'Karın organları, gebelik ve kalp için ağrısız görüntüleme.' },
+  { img: lab, alt: 'Laboratuvarda sitoloji boyaması', title: 'Laboratuvar', text: 'Tam kan, biyokimya, idrar, dışkı, mikroskopi ve sitoloji.' },
+];
+---
+<Base
+  title="Kliniğimiz: Mavi Bulvar'da 2019'dan Beri | Lupus Veteriner"
+  description="Lupus Veteriner Kliniği 2019'dan beri Çukurova Mavi Bulvar'da. Röntgen, ultrason, laboratuvar, ameliyathane ve yatış ünitesiyle kedi ve köpeklere hizmet."
+  image={entrance}
+  breadcrumbs={[{ name: 'Kliniğimiz', url: '/hakkimizda' }]}
+>
+  <section class="wrap grid items-center gap-10 pt-8 md:grid-cols-[1.1fr_1fr]">
+    <div>
+      <h1>Mavi Bulvar’da, {clinic.founded}’dan beri</h1>
+      <div class="prose-lupus measure mt-6">
+        <p>Lupus Veteriner Kliniği, Çukurova’da Toros Mahallesi’nde, Mavi Bulvar üzerinde hizmet veriyor. Muayene, laboratuvar, görüntüleme, ameliyat ve yatış aynı klinikte; dostunuzu tahlil ya da röntgen için başka bir yere götürmeniz gerekmiyor.</p>
+        <p>Klinikte ayrıca mama, tasma, taşıma çantası ve bakım ürünlerinin bulunduğu küçük bir pet shop bölümü var.</p>
+      </div>
+    </div>
+    <Image src={entrance} alt="Lupus Veteriner Kliniği girişinde kırmızı tasmalı bir French Bulldog" widths={[480, 720, 960]} sizes="(min-width: 768px) 45vw, 100vw" loading="eager" class="aspect-[4/5] w-full rounded-[32px] object-cover" />
+  </section>
+
+  <section class="wrap mt-20 grid gap-4 md:grid-cols-2">
+    <Image src={reception} alt="Klinik resepsiyonu ve bekleme alanı" widths={[480, 800]} sizes="(min-width: 768px) 48vw, 100vw" class="aspect-[4/3] w-full rounded-[24px] object-cover" loading="lazy" />
+    <Image src={shop} alt="Klinikteki pet shop bölümü ve raflar" widths={[480, 800]} sizes="(min-width: 768px) 48vw, 100vw" class="aspect-[4/3] w-full rounded-[24px] object-cover" loading="lazy" />
+  </section>
+
+  <section class="wrap mt-24">
+    <h2>Klinik içinde neler var?</h2>
+    <ul class="mt-10 grid gap-10 md:grid-cols-3">
+      {equipment.map((e) => (
+        <li>
+          <Image src={e.img} alt={e.alt} widths={[400, 640]} sizes="(min-width: 768px) 30vw, 100vw" class="aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+          <h3 class="mt-4">{e.title}</h3>
+          <p class="mt-1 text-ink/80">{e.text}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="wrap mt-24">
+    <h2 class="mb-10">Muayene masamızdan geçenler</h2>
+    <PatientWall />
+  </section>
+
+  <section class="wrap mt-20">
+    <h2>Adres</h2>
+    <p class="mt-3">{fullAddress}. {clinic.address.landmark}.</p>
+    <a href="/iletisim" class="link mt-2 inline-block font-bold text-navy">İletişim ve harita</a>
+  </section>
+
+  <CtaBand />
+</Base>

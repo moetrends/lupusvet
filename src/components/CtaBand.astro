@@ -1,0 +1,20 @@
+---
+import { clinic, telHref } from '../data/clinic';
+interface Props { title?: string; text?: string }
+const {
+  title = 'Dostunuz için randevu alın',
+  text = 'Randevularımızı Vetimiz üzerinden alıyoruz. Acil bir durumda doğrudan arayın.',
+} = Astro.props;
+---
+<section class="wrap mt-20">
+  <div class="grid items-center gap-6 rounded-[28px] bg-navy px-6 py-10 text-white md:grid-cols-[1fr_auto] md:px-12">
+    <div>
+      <h2 class="!text-white">{title}</h2>
+      <p class="mt-2 max-w-xl text-white/80">{text}</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Vetimiz’den randevu al</a>
+      <a href={telHref} class="btn btn-line text-white">{clinic.phone}</a>
+    </div>
+  </div>
+</section>

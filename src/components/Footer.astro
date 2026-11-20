@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import { clinic, fullAddress, telHref } from '../data/clinic';
+import HoursTable from './HoursTable.astro';
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 bg-navy-deep text-white/85">
+  <div class="wrap grid gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr]">
+    <div>
+      <p class="font-serif text-3xl font-semibold text-white">{clinic.name}</p>
+      <address class="mt-4 not-italic leading-relaxed">
+        {fullAddress}<br />
+        <span class="text-white/65">{clinic.address.landmark}</span>
+      </address>
+      <p class="mt-4"><a href={telHref} class="text-2xl font-bold text-white no-underline">{clinic.phone}</a></p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
+        <a href={clinic.directionsUrl} target="_blank" rel="noopener" class="btn btn-line text-white">Yol tarifi</a>
+      </div>
+    </div>
+    <div>
+      <p class="font-serif text-xl text-white">Çalışma saatleri</p>
+      <div class="mt-3"><HoursTable dark /></div>
+      <p class="mt-6 font-serif text-xl text-white">Bizi takip edin</p>
+      <ul class="mt-2 space-y-1">
+        <li><a href={clinic.instagramUrl} target="_blank" rel="noopener" class="link">Instagram · @lupus_vet</a></li>
+        <li><a href={clinic.mapsCidUrl} target="_blank" rel="noopener" class="link">Google Haritalar</a></li>
+      </ul>
+    </div>
+    <nav aria-label="Hizmetler">
+      <p class="font-serif text-xl text-white">Hizmetlerimiz</p>
+      <ul class="mt-3 space-y-1">
+        {services.map((s) => <li><a href={`/hizmetler/${s.id}`} class="link">{s.data.title}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="wrap flex flex-wrap justify-between gap-3 py-5 text-[.92rem] text-white/60">
+      <p>© {year} {clinic.name}. Kuruluş {clinic.founded}.</p>
+      <p><a href="/kvkk" class="link">KVKK aydınlatma metni</a></p>
+    </div>
+  </div>
+</footer>

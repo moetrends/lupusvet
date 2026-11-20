@@ -1,0 +1,25 @@
+---
+import { clinic } from '../data/clinic';
+// Harita, ziyaretçi tıklayana kadar yüklenmez: sayfa hızı ve gizlilik için.
+const src = `https://www.google.com/maps?q=${encodeURIComponent(clinic.name + ', Mavi Bulvarı 62/B, Çukurova, Adana')}&ll=${clinic.geo.lat},${clinic.geo.lng}&z=17&output=embed&hl=tr`;
+---
+<div class="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-mist md:aspect-[16/10]" data-map={src}>
+  <button type="button" class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center" data-map-load>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="text-red"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" fill="currentColor"/><circle cx="12" cy="9.5" r="2.5" fill="white"/></svg>
+    <span class="font-serif text-2xl text-navy-deep">Haritayı göster</span>
+    <span class="text-muted">Mavi Bulvar, İkram Dondurma’nın 150 m ilerisi</span>
+  </button>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((box) => {
+    box.querySelector('[data-map-load]')?.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = box.dataset.map!;
+      f.title = 'Lupus Veteriner Kliniği Google Haritalar konumu';
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.className = 'absolute inset-0 h-full w-full border-0';
+      box.replaceChildren(f);
+    });
+  });
+</script>

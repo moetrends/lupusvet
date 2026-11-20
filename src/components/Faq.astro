@@ -1,0 +1,18 @@
+---
+interface Props { items: { q: string; a: string }[]; title?: string }
+const { items, title = 'Sık sorulan sorular' } = Astro.props;
+---
+<section class="mt-16">
+  <h2>{title}</h2>
+  <div class="mt-6 divide-y divide-line border-y border-line">
+    {items.map((f) => (
+      <details class="group py-1">
+        <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-4 text-[1.15rem] font-bold text-navy-deep [&::-webkit-details-marker]:hidden">
+          {f.q}
+          <svg class="mt-1 size-5 shrink-0 transition-transform duration-200 group-open:rotate-45" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="measure pb-5 text-ink/85">{f.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

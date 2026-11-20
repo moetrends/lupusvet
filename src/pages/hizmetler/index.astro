@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base
+  title="Veteriner Hizmetlerimiz: Cerrahi, Ortopedi, Ultrason, Laboratuvar"
+  description="Lupus Veteriner Kliniği'nde kedi ve köpekler için cerrahi, dahiliye, ortopedi, doğum, ultrason, ekokardiyografi, dermatoloji, onkoloji, diş ve laboratuvar."
+  breadcrumbs={[{ name: 'Hizmetler', url: '/hizmetler' }]}
+>
+  <section class="wrap pt-8">
+    <h1 class="max-w-3xl">Hizmetlerimiz</h1>
+    <p class="measure mt-5 text-[1.2rem] text-ink/85">
+      Muayene, tahlil, görüntüleme ve ameliyat aynı klinikte. Dostunuzu başka bir yere göndermeden, çoğu zaman aynı gün tanı koyup tedaviye başlıyoruz.
+    </p>
+  </section>
+
+  <section class="wrap mt-14">
+    <ul class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <li>
+          <a href={`/hizmetler/${s.id}`} class="group block no-underline">
+            <Image src={s.data.hero} alt={s.data.heroAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" class="aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+            <h2 class="mt-5 !text-[1.6rem] group-hover:text-red">{s.data.title}</h2>
+            <p class="mt-2 text-ink/80">{s.data.short}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="wrap mt-20">
+    <h2>Diğer rutin işlemler</h2>
+    <p class="measure mt-4">Aşı ve iç-dış parazit uygulamaları, mikroçip (pasaport ve kayıt için), tırnak kesimi, tıraş, pansuman ve bandaj, ötenazi ve nekropsi. Vetimiz kaydımıza göre evde hizmet de verilmektedir; bilgi için arayın.</p>
+  </section>
+
+  <CtaBand />
+</Base>

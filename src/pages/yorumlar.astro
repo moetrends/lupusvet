@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import ReviewList from '../components/ReviewList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { clinic } from '../data/clinic';
+---
+<Base
+  title="Hasta Sahiplerimizin Yorumları | Lupus Veteriner Kliniği"
+  description="Lupus Veteriner Kliniği Google Haritalar'da 4,8 puan ve 108 yorumla. Çukurova'daki hasta sahiplerimizin Yunus Kurt ve ekibi hakkındaki yorumları."
+  breadcrumbs={[{ name: 'Yorumlar', url: '/yorumlar' }]}
+>
+  <section class="wrap pt-8">
+    <h1>Hasta sahiplerimiz ne diyor?</h1>
+    <p class="measure mt-5 text-[1.2rem] text-ink/85">
+      Aşağıdaki yorumlar Google Haritalar’daki işletme profilimizden, olduğu gibi alındı. Dostunuzla geldiyseniz deneyiminizi Google’da paylaşmanız, başka hasta sahiplerinin bizi bulmasına yardım eder.
+    </p>
+  </section>
+  <section class="wrap mt-14">
+    <ReviewList />
+    <a href={clinic.mapsCidUrl} target="_blank" rel="noopener" class="btn btn-line mt-8 text-navy">Google’da yorum yazın</a>
+  </section>
+  <CtaBand />
+</Base>
