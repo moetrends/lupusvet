@@ -20,7 +20,7 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
       <Image src={logo} alt="" width={52} height={52} class="size-[52px] rounded-full" loading="eager" />
       <span class="leading-tight">
         <span class="block font-serif text-[1.3rem] font-semibold text-navy-deep">Lupus</span>
-        <span class="block text-[.82rem] text-muted">Veteriner Kliniği · Çukurova</span>
+        <span class="block text-[.82rem] text-muted">Veteriner Kliniği, Çukurova</span>
       </span>
     </a>
 
@@ -35,8 +35,8 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
     </nav>
 
     <div class="ml-auto flex items-center gap-2 lg:ml-3">
-      <a href={telHref} class="hidden font-bold text-navy no-underline sm:inline">{clinic.phone}</a>
-      <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red hidden !py-2 md:inline-flex">Randevu al</a>
+      <a href={telHref} class="hidden whitespace-nowrap font-bold text-navy no-underline sm:inline lg:hidden xl:inline">{clinic.phone}</a>
+      <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red hidden whitespace-nowrap !py-2 md:inline-flex">Randevu al</a>
       <details class="group relative lg:hidden">
         <summary class="flex size-11 cursor-pointer list-none items-center justify-center rounded-full hover:bg-mist [&::-webkit-details-marker]:hidden" aria-label="Menüyü aç">
           <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" class="group-open:hidden"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>

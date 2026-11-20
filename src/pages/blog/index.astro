@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date || a.data.title.localeCompare(b.data.title, 'tr'));
+const groups = [
+  { key: 'vaka', title: 'Vaka hikâyeleri', text: 'Kliniğimizde tedavi ettiğimiz dostlarımız, kendi fotoğraflarıyla.' },
+  { key: 'bilgi', title: 'Bilmeniz gerekenler', text: 'Hasta sahiplerinin bize en sık sorduğu konular.' },
+] as const;
+---
+<Base
+  title="Blog: Kedi ve Köpek Sağlığı, Vaka Hikâyeleri | Lupus Veteriner"
+  description="Kısırlaştırma, parazitler, kalp hastalıkları, kırıklar ve diş sağlığı üzerine Veteriner Hekim Yunus Kurt'tan yazılar ve klinikten gerçek vaka hikâyeleri."
+  breadcrumbs={[{ name: 'Blog', url: '/blog' }]}
+>
+  <section class="wrap pt-8">
+    <h1>Blog</h1>
+    <p class="measure mt-5 text-[1.2rem] text-ink/85">Kliniğimizden notlar: gerçek vakalar ve dostunuzun sağlığı için bilmeniz gerekenler.</p>
+  </section>
+
+  {groups.map((g) => {
+    const list = posts.filter((p) => p.data.category === g.key);
+    return list.length > 0 && (
+      <section class="wrap mt-16">
+        <h2>{g.title}</h2>
+        <p class="mt-2 text-muted">{g.text}</p>
+        <ul class="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {list.map((p) => (
+            <li>
+              <a href={`/blog/${p.id}`} class="group block no-underline">
+                <Image src={p.data.hero} alt={p.data.heroAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" class="aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+                <h3 class="mt-4 group-hover:text-red">{p.data.title}</h3>
+                <p class="mt-2 text-ink/80">{p.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  })}
+
+  <CtaBand />
+</Base>

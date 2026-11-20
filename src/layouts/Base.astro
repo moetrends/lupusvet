@@ -52,7 +52,7 @@ if (breadcrumbs) nodes.push(breadcrumbSchema([{ name: 'Ana sayfa', url: '/' }, .
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(graph(nodes))} />
-    <script defer src="/_vercel/insights/script.js"></script>
+    {import.meta.env.PROD && <script is:inline defer src="/_vercel/insights/script.js"></script>}
   </head>
   <body class="flex min-h-dvh flex-col pb-20 md:pb-0">
     <a href="#icerik" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2">İçeriğe geç</a>

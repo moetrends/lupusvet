@@ -19,6 +19,6 @@ const list = limit ? reviews.slice(0, limit) : reviews;
   ))}
 </div>
 <p class="mt-10 text-[1.05rem]">
-  Google Haritalar’da <strong>{clinic.rating.value.toLocaleString('tr-TR')}</strong> puan, <strong>{clinic.rating.count}</strong> yorum.
+  Google Haritalar’da <strong>{clinic.rating.value.toLocaleString('tr-TR')}</strong> puan, <strong>{clinic.rating.count}</strong> yorum.{' '}
   <a href={clinic.mapsCidUrl} target="_blank" rel="noopener" class="link font-bold text-navy">Tüm yorumları Google’da okuyun</a>
 </p>
