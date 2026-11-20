@@ -11,8 +11,8 @@ import ServiceIcon from '../components/ServiceIcon.astro';
 import { clinic, fullAddress, telHref } from '../data/clinic';
 import { personSchema } from '../lib/schema';
 import hero from '../assets/photos/yunus-kurt-kedi-yavrusu.jpg';
-import vetPhoto from '../assets/photos/yunus-kurt-golden.jpg';
-import clinicPhoto from '../assets/photos/klinik-ic-resepsiyon.jpg';
+import vetPhoto from '../assets/photos/yunus-kurt-alman-kurdu.webp';
+import clinicPhoto from '../assets/photos/yunus-kurt-setter-klinik.webp';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
@@ -121,12 +121,12 @@ const years = new Date().getFullYear() - clinic.founded;
   <section class="relative mt-24 overflow-hidden bg-navy-deep py-20 text-white">
     <div aria-hidden="true" class="pointer-events-none absolute -right-24 -top-24 size-[28rem] rounded-full bg-navy opacity-60"></div>
     <div class="wrap relative grid items-center gap-10 md:grid-cols-[1fr_1.15fr] md:gap-16">
-      <div data-reveal class="overflow-hidden rounded-[28px]"><Image src={vetPhoto} alt="Veteriner Hekim Yunus Kurt bir köpekle klinikte" widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" class="aspect-[4/5] w-full rounded-[28px] object-cover" loading="lazy" /></div>
+      <div data-reveal class="overflow-hidden rounded-[28px]"><Image src={vetPhoto} alt="Veteriner Hekim Yunus Kurt muayene masasında bir Alman Kurdu yavrusuyla" widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" class="aspect-[4/5] w-full rounded-[28px] object-cover" loading="lazy" /></div>
       <div>
         <p class="text-[1.05rem] text-[#a9bbdf]">Kurucu hekim</p>
         <h2 class="mt-2 !text-white">Veteriner Hekim Yunus Kurt</h2>
         <p class="measure mt-5 text-[1.2rem] leading-relaxed text-white/80">
-          Lupus’u {clinic.founded}’da Mavi Bulvar’da kurdu. {years} yıldır Çukurova’daki kedi ve köpeklerin aşısından ameliyatına kadar her aşamasında yanlarında.
+          Ankara Üniversitesi Veteriner Fakültesi mezunu, {clinic.vet.experienceYears} yıllık hekim. Lupus’u {clinic.founded}’da Mavi Bulvar’da kurdu. Özel ilgi alanı kalp hastalıkları ve ekokardiyografi.
           Hasta sahiplerimizin yorumlarında en çok geçen kelimeler “ilgili” ve “vicdanlı”.
         </p>
         <a href="/veteriner-hekim-yunus-kurt" class="btn btn-line mt-7 text-white">Hekimimizi tanıyın</a>
@@ -180,7 +180,7 @@ const years = new Date().getFullYear() - clinic.founded;
       <h2 id="konum-baslik">Bizi nasıl bulursunuz?</h2>
       <p class="mt-4">{fullAddress}</p>
       <p class="mt-2 text-muted">{clinic.address.landmark}.</p>
-      <Image data-reveal src={clinicPhoto} alt="Lupus Veteriner Kliniği resepsiyon ve bekleme alanı" widths={[400, 640]} sizes="(min-width: 768px) 35vw, 100vw" class="mt-6 aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+      <Image data-reveal src={clinicPhoto} alt="Yunus Kurt klinikte bir İngiliz Setter ile" widths={[400, 640]} sizes="(min-width: 768px) 35vw, 100vw" class="mt-6 aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
     </div>
     <MapEmbed />
   </section>

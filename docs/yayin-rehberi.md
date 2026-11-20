@@ -31,7 +31,7 @@ https://business.google.com → Lupus Veteriner Kliniği:
 - **Web sitesi:** `https://lupusveteriner.com` (zaten yazılı, kontrol edin).
 - **Randevu bağlantısı:** `https://www.vetimiz.com/klinikler/lupus-veteriner-klinigi`
 - **Hizmetler:** sitedeki 11 hizmeti aynı adlarla ekleyin.
-- **Saatler:** Pazar kapanışı 16:00 mı 16:30 mu? Instagram, Maps ve site aynı olmalı. Değişirse `src/data/clinic.ts` içindeki `hours` satırı güncellenmeli.
+- **Saatler:** Pazar 12:00–16:00 (klinik teyidi). Google İşletme Profili'ndeki 16:30'u 16:00 yapın. Değişirse `src/data/clinic.ts` içindeki `hours` satırı güncellenmeli.
 - **Fotoğraflar:** düzenli yeni fotoğraf ekleyin (ayda birkaç tane).
 - **Yorumlar:** her yoruma kısa da olsa yanıt verin.
 

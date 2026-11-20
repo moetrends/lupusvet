@@ -13,6 +13,7 @@ export function vetClinicSchema(image?: string) {
     name: clinic.name,
     url: clinic.url,
     telephone: clinic.phoneE164,
+    email: clinic.email,
     image: image ? abs(image) : undefined,
     logo: abs('/favicon.png'),
     foundingDate: String(clinic.founded),
@@ -36,6 +37,7 @@ export function vetClinicSchema(image?: string) {
     areaServed: clinic.areaServed.map((name) => ({ '@type': 'Place', name })),
     sameAs: [clinic.instagramUrl, clinic.mapsCidUrl, clinic.bookingUrl],
     employee: { '@id': VET_ID },
+    knowsAbout: clinic.species.map((s) => `${s} sağlığı`),
     potentialAction: {
       '@type': 'ReserveAction',
       target: { '@type': 'EntryPoint', urlTemplate: clinic.bookingUrl },
@@ -55,6 +57,11 @@ export function personSchema() {
     sameAs: [clinic.vet.instagram],
     alumniOf: clinic.vet.alumniOf ? { '@type': 'CollegeOrUniversity', name: clinic.vet.alumniOf } : undefined,
     knowsAbout: clinic.vet.focus,
+    memberOf: { '@type': 'Organization', name: clinic.vet.memberOf },
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: `Veteriner Hekimlik (${clinic.vet.graduationYear})`, recognizedBy: { '@type': 'CollegeOrUniversity', name: clinic.vet.alumniOf } },
+      { '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: `Yüksek lisans: ${clinic.vet.postgrad.field} (${clinic.vet.postgrad.year})` },
+    ],
   };
 }
 

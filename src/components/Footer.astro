@@ -14,6 +14,7 @@ const year = new Date().getFullYear();
         <span class="text-white/65">{clinic.address.landmark}</span>
       </address>
       <p class="mt-4"><a href={telHref} class="text-2xl font-bold text-white no-underline">{clinic.phone}</a></p>
+      <p class="mt-1"><a href={`mailto:${clinic.email}`} class="link">{clinic.email}</a></p>
       <div class="mt-6 flex flex-wrap gap-3">
         <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
         <a href={clinic.directionsUrl} target="_blank" rel="noopener" class="btn btn-line text-white">Yol tarifi</a>

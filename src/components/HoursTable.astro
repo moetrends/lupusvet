@@ -14,15 +14,17 @@ const short: Record<string, string> = { 'Pazartesi – Cumartesi': 'Pzt – Cmt'
     ))}
   </tbody>
 </table>
-<p class:list={['mt-2 text-[.95rem]', dark ? 'text-white/65' : 'text-muted']} data-open-status></p>
+<p class:list={['mt-2 text-[.95rem]', dark ? 'text-white/65' : 'text-muted']} data-open-status data-hours={JSON.stringify(clinic.hours.map((h) => ({ d: h.days, o: h.opens, c: h.closes })))}></p>
 <script>
   // Klinik şu an açık mı? (Türkiye saati, UTC+3)
   const el = document.querySelectorAll<HTMLElement>('[data-open-status]');
+  const names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
-  const day = now.getDay();
   const mins = now.getHours() * 60 + now.getMinutes();
-  const [o, c] = day === 0 ? [12 * 60, 16 * 60 + 30] : [9 * 60, 19 * 60 + 30];
-  const open = mins >= o && mins < c;
-  const text = open ? `Şu an açık · ${day === 0 ? '16:30' : '19:30'}’a kadar` : 'Şu an kapalı';
+  const toMin = (t: string) => +t.slice(0, 2) * 60 + +t.slice(3);
+  const hours: { d: string[]; o: string; c: string }[] = JSON.parse(el[0]?.dataset.hours ?? '[]');
+  const today = hours.find((h) => h.d.includes(names[now.getDay()]));
+  const open = !!today && mins >= toMin(today.o) && mins < toMin(today.c);
+  const text = open ? `Şu an açık, kapanış ${today!.c}` : 'Şu an kapalı';
   el.forEach((e) => { e.innerHTML = `<span class="status-dot" aria-hidden="true"></span>${text}`; e.dataset.state = open ? 'open' : 'closed'; });
 </script>

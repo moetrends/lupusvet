@@ -92,6 +92,9 @@ test('ana sayfa: VeterinaryCare şeması ve 2 çalışma saati kaydı', () => {
   assert.ok(vet, 'VeterinaryCare yok');
   assert.equal(vet.openingHoursSpecification.length, 2);
   assert.equal(vet.telephone, '+905372115005');
+  assert.equal(vet.email, 'lupusveteriner@gmail.com');
+  const sunday = vet.openingHoursSpecification.find((h) => h.dayOfWeek.some((d) => d.endsWith('Sunday')));
+  assert.equal(sunday.closes, '16:00', 'Pazar kapanışı 16:00 olmalı');
 });
 
 const SERVICES = [
@@ -119,6 +122,13 @@ test('blog: 8 yazı, her biri BlogPosting', () => {
   const posts = pages.filter((p) => /^\/blog\/[^/]+$/.test(p.route));
   assert.ok(posts.length >= 8, `blog yazısı sayısı ${posts.length}`);
   for (const p of posts) assert.ok(flatTypes(jsonLd(p.html)).includes('BlogPosting'), `${p.route}: BlogPosting yok`);
+});
+
+test('hekim sayfası doğrulanmış özgeçmişi taşıyor', () => {
+  const p = get('/veteriner-hekim-yunus-kurt');
+  assert.match(p.html, /Ankara Üniversitesi Veteriner Fakültesi/);
+  const person = jsonLd(p.html).flatMap((b) => b['@graph'] ?? [b]).find((n) => n['@type'] === 'Person');
+  assert.equal(person.alumniOf.name, 'Ankara Üniversitesi Veteriner Fakültesi');
 });
 
 test('sitemap, robots.txt, llms.txt var', () => {
