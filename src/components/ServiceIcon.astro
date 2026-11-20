@@ -1,0 +1,32 @@
+---
+// Hizmetler için ince çizgi ikonlar (24×24, stroke). Renk currentColor'dan gelir.
+interface Props { slug: string; class?: string }
+const { slug, class: cls = 'size-6' } = Astro.props;
+
+const paths: Record<string, string> = {
+  // neşter
+  cerrahi: 'M14.5 3.5l6 6-9.5 9.5H5v-6zM12 6l6 6M5 19l-2 2',
+  // stetoskop
+  dahiliye: 'M6 3v5a4 4 0 0 0 8 0V3M10 12v3a5 5 0 0 0 10 0v-2M20 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+  // kemik
+  'ortopedi-ve-travmatoloji': 'M7.5 4.5a2.5 2.5 0 0 0-3 3 2.5 2.5 0 0 0 1.8 4l5.7 5.7a2.5 2.5 0 0 0 4 1.8 2.5 2.5 0 0 0 3-3 2.5 2.5 0 0 0-1.8-4L11.5 6.3a2.5 2.5 0 0 0-4-1.8z',
+  // kalp içinde pati
+  'dogum-ve-jinekoloji': 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10zM10 11.5h.01M14 11.5h.01M12 14.5c1 0 1.6-.6 1.6-1.2S12.8 12 12 12s-1.6.7-1.6 1.3.6 1.2 1.6 1.2z',
+  // ultrason probu ve dalgalar
+  ultrasonografi: 'M8 14l-3 6h6l-1-6M6 14h6V9H6zM14 7a5 5 0 0 1 0 6M17 4.5a9 9 0 0 1 0 11',
+  // kalp ritmi
+  ekokardiyografi: 'M12 20s-7.5-4.5-7.5-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.8C19.5 15.5 12 20 12 20zM3 12h4l1.5-2.5L11 15l2-4 1 1h7',
+  // tüy / deri
+  dermatoloji: 'M20 4C11 4 5 10 5 19M20 4c0 6-3 11-9 12M9 12l3 1M8 15.5l3 .5',
+  // hücreler
+  onkoloji: 'M9 10a4 4 0 1 0 0-.01zM16.5 16.5a3 3 0 1 0 0-.01zM9 10h.01M17 6.5a1.5 1.5 0 1 0 0-.01z',
+  // diş
+  'agiz-ve-dis-hastaliklari': 'M7 3.5c-2.2 0-3.5 1.8-3.5 4 0 3 1.5 4.5 2 7.5.4 2.6 1 5.5 2.3 5.5 1.5 0 1.5-4.5 4.2-4.5s2.7 4.5 4.2 4.5c1.3 0 1.9-2.9 2.3-5.5.5-3 2-4.5 2-7.5 0-2.2-1.3-4-3.5-4-2 0-3 1-5 1s-3-1-5-1z',
+  // deney tüpü
+  laboratuvar: 'M9 3h6M10 3v6.5L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9.5V3M7.5 15h9',
+  // röntgen çerçevesi
+  goruntuleme: 'M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M12 7v10M9 9.5h6M8.5 12.5h7M9 15.5h6',
+};
+const d = paths[slug] ?? paths.dahiliye;
+---
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={cls} aria-hidden="true"><path d={d} /></svg>

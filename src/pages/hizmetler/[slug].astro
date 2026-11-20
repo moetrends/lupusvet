@@ -4,6 +4,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import ServiceIcon from '../../components/ServiceIcon.astro';
 import { clinic } from '../../data/clinic';
 import { serviceSchema, faqSchema } from '../../lib/schema';
 
@@ -28,6 +29,7 @@ const posts = (await getCollection('blog')).filter((p) => p.data.service === ent
   <article>
     <header class="wrap grid items-end gap-10 pt-8 md:grid-cols-[1.1fr_1fr]">
       <div>
+        <span class="hero-line icon-chip mb-5 bg-leaf-soft text-leaf"><ServiceIcon slug={entry.id} class="size-6" /></span>
         <h1 class="hero-line">{entry.data.title}</h1>
         <p class="hero-line measure mt-5 text-[1.2rem] text-ink/85">{entry.data.short}</p>
         <div class="mt-7 flex flex-wrap gap-3">

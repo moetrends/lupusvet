@@ -19,6 +19,11 @@
   --color-mist: #e7ecf0;
   --color-line: #d5dce3;
   --color-muted: #5a6478;
+  --color-sand: #ece3d3;
+  --color-sand-deep: #dfd2bc;
+  --color-leaf-soft: #e3ecdc;
+  --color-red-soft: #f6e3e3;
+  --color-sky: #dfe7f2;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -72,6 +77,17 @@
   .btn-line { border: 2px solid currentColor; padding: calc(.8rem - 2px) calc(1.35rem - 2px); }
   .btn-line:hover { background: color-mix(in srgb, currentColor 8%, transparent); }
 
+  /* Ahşap/mantar pano zemini: hasta duvarı için. */
+  .board {
+    background-color: var(--color-sand);
+    background-image:
+      radial-gradient(rgba(120, 92, 52, .10) 1px, transparent 1.2px),
+      radial-gradient(rgba(120, 92, 52, .07) 1px, transparent 1.2px);
+    background-size: 14px 14px, 23px 23px;
+    background-position: 0 0, 7px 11px;
+  }
+  .icon-chip { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 14px; flex-shrink: 0; }
+
   .link { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
   .link:hover { text-decoration-color: currentColor; }
 
@@ -112,7 +128,7 @@
 .js .polaroid[data-in] { opacity: 1; }
 
 /* Görsel çerçevesi içinde yavaş yakınlaşma (kart üzerine gelince). */
-.zoom { overflow: hidden; border-radius: inherit; }
+.zoom { overflow: hidden; isolation: isolate; }
 .zoom img { transition: transform 600ms var(--ease-out); }
 
 /* "Şu an açık" nabzı: durum göstergesi. */

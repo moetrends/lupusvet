@@ -1,25 +1,25 @@
 ---
 import { reviews } from '../data/reviews';
 import { clinic } from '../data/clinic';
-interface Props { limit?: number }
-const { limit } = Astro.props;
+interface Props { limit?: number; dark?: boolean }
+const { limit, dark = false } = Astro.props;
 const list = limit ? reviews.slice(0, limit) : reviews;
 ---
 <div class="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
   {list.map((r) => (
     <figure class="relative flex flex-col">
-      <span aria-hidden="true" class="pointer-events-none absolute -top-7 -left-2 font-serif text-[6rem] leading-none text-red/10 select-none">“</span>
-      <div class="flex gap-0.5 text-red" aria-label="5 üzerinden 5 yıldız" role="img">
+      <span aria-hidden="true" class:list={['pointer-events-none absolute -top-7 -left-2 font-serif text-[6rem] leading-none select-none', dark ? 'text-white/10' : 'text-red/10']}>“</span>
+      <div class:list={['flex gap-0.5', dark ? 'text-[#f2b84b]' : 'text-red']} aria-label="5 üzerinden 5 yıldız" role="img">
         {Array.from({ length: 5 }).map(() => (
           <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.5 6 .7-4.5 4.1 1.2 5.9L10 14.8l-5.3 2.9 1.2-5.9L1.4 7.7l6-.7z"/></svg>
         ))}
       </div>
-      <blockquote class="mt-3 font-serif text-[1.3rem] leading-snug text-navy-deep">“{r.text}”</blockquote>
-      <figcaption class="mt-3 text-[.98rem] text-muted">{r.author}, Google yorumu, {r.when}</figcaption>
+      <blockquote class:list={['mt-3 font-serif text-[1.3rem] leading-snug', dark ? 'text-white' : 'text-navy-deep']}>“{r.text}”</blockquote>
+      <figcaption class:list={['mt-3 text-[.98rem]', dark ? 'text-white/60' : 'text-muted']}>{r.author}, Google yorumu, {r.when}</figcaption>
     </figure>
   ))}
 </div>
-<p class="mt-10 text-[1.05rem]">
+<p class:list={['mt-10 text-[1.05rem]', dark && 'text-white/80']}>
   Google Haritalar’da <strong>{clinic.rating.value.toLocaleString('tr-TR')}</strong> puan, <strong>{clinic.rating.count}</strong> yorum.{' '}
-  <a href={clinic.mapsCidUrl} target="_blank" rel="noopener" class="link font-bold text-navy">Tüm yorumları Google’da okuyun</a>
+  <a href={clinic.mapsCidUrl} target="_blank" rel="noopener" class:list={['link font-bold', dark ? 'text-white' : 'text-navy']}>Tüm yorumları Google’da okuyun</a>
 </p>
