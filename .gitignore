@@ -7,3 +7,6 @@ assets-raw/
 .superpowers/
 .DS_Store
 .env*
+
+# Yerel Claude skill kurulumu (üçüncü taraf içerik, public repoya girmez)
+.claude/skills/
