@@ -12,7 +12,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
   breadcrumbs={[{ name: 'Hizmetler', url: '/hizmetler' }]}
 >
   <section class="wrap pt-8">
-    <h1 class="max-w-3xl">Hizmetlerimiz</h1>
+    <h1 class="hero-line max-w-3xl">Hizmetlerimiz</h1>
     <p class="measure mt-5 text-[1.2rem] text-ink/85">
       Muayene, tahlil, görüntüleme ve ameliyat aynı klinikte. Dostunuzu başka bir yere göndermeden, çoğu zaman aynı gün tanı koyup tedaviye başlıyoruz.
     </p>
@@ -20,10 +20,10 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 
   <section class="wrap mt-14">
     <ul class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-      {services.map((s) => (
-        <li>
-          <a href={`/hizmetler/${s.id}`} class="group block no-underline">
-            <Image src={s.data.hero} alt={s.data.heroAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" class="aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+      {services.map((s, i) => (
+        <li data-reveal style={`--i:${i % 3}`}>
+          <a href={`/hizmetler/${s.id}`} class="card group block no-underline">
+            <div class="zoom rounded-[20px]"><Image src={s.data.hero} alt={s.data.heroAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" class="aspect-[4/3] w-full object-cover" loading="lazy" /></div>
             <h2 class="mt-5 !text-[1.6rem] group-hover:text-red">{s.data.title}</h2>
             <p class="mt-2 text-ink/80">{s.data.short}</p>
           </a>

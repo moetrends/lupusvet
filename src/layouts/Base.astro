@@ -30,6 +30,7 @@ if (breadcrumbs) nodes.push(breadcrumbSchema([{ name: 'Ana sayfa', url: '/' }, .
 <html lang="tr">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -63,5 +64,17 @@ if (breadcrumbs) nodes.push(breadcrumbSchema([{ name: 'Ana sayfa', url: '/' }, .
     </main>
     <Footer />
     <MobileBar />
+    <script>
+      // Görseller ekrana girince bir kez belirir; başlık çubuğu kayınca gölge alır.
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { (e.target as HTMLElement).dataset.in = ''; io.unobserve(e.target); } }),
+        { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+      );
+      document.querySelectorAll('[data-reveal], .polaroid').forEach((el) => io.observe(el));
+      const header = document.querySelector<HTMLElement>('.site-header');
+      const onScroll = () => { if (header) header.toggleAttribute('data-scrolled', scrollY > 8); };
+      addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    </script>
   </body>
 </html>

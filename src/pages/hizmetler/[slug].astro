@@ -28,14 +28,14 @@ const posts = (await getCollection('blog')).filter((p) => p.data.service === ent
   <article>
     <header class="wrap grid items-end gap-10 pt-8 md:grid-cols-[1.1fr_1fr]">
       <div>
-        <h1>{entry.data.title}</h1>
-        <p class="measure mt-5 text-[1.2rem] text-ink/85">{entry.data.short}</p>
+        <h1 class="hero-line">{entry.data.title}</h1>
+        <p class="hero-line measure mt-5 text-[1.2rem] text-ink/85">{entry.data.short}</p>
         <div class="mt-7 flex flex-wrap gap-3">
           <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
           <a href={`tel:${clinic.phoneE164}`} class="btn btn-line text-navy">{clinic.phone}</a>
         </div>
       </div>
-      <Image src={entry.data.hero} alt={entry.data.heroAlt} widths={[480, 720, 960]} sizes="(min-width: 768px) 45vw, 100vw" loading="eager" class="aspect-[4/3] w-full rounded-[28px] object-cover" />
+      <Image src={entry.data.hero} alt={entry.data.heroAlt} widths={[480, 720, 960]} sizes="(min-width: 768px) 45vw, 100vw" loading="eager" class="hero-photo aspect-[4/3] w-full rounded-[28px] object-cover" />
     </header>
 
     <div class="wrap mt-14 grid gap-14 lg:grid-cols-[1fr_20rem]">

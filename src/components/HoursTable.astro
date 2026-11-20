@@ -23,5 +23,5 @@ const { dark = false } = Astro.props;
   const [o, c] = day === 0 ? [12 * 60, 16 * 60 + 30] : [9 * 60, 19 * 60 + 30];
   const open = mins >= o && mins < c;
   const text = open ? `Şu an açık · ${day === 0 ? '16:30' : '19:30'}’a kadar` : 'Şu an kapalı';
-  el.forEach((e) => { e.textContent = text; e.dataset.state = open ? 'open' : 'closed'; });
+  el.forEach((e) => { e.innerHTML = `<span class="status-dot" aria-hidden="true"></span>${text}`; e.dataset.state = open ? 'open' : 'closed'; });
 </script>

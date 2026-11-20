@@ -27,10 +27,10 @@ const groups = [
         <h2>{g.title}</h2>
         <p class="mt-2 text-muted">{g.text}</p>
         <ul class="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((p) => (
-            <li>
-              <a href={`/blog/${p.id}`} class="group block no-underline">
-                <Image src={p.data.hero} alt={p.data.heroAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" class="aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+          {list.map((p, i) => (
+            <li data-reveal style={`--i:${i % 3}`}>
+              <a href={`/blog/${p.id}`} class="card group block no-underline">
+                <div class="zoom rounded-[20px]"><Image src={p.data.hero} alt={p.data.heroAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" class="aspect-[4/3] w-full object-cover" loading="lazy" /></div>
                 <h3 class="mt-4 group-hover:text-red">{p.data.title}</h3>
                 <p class="mt-2 text-ink/80">{p.data.description}</p>
               </a>

@@ -33,7 +33,7 @@ const years = new Date().getFullYear() - clinic.founded;
   schema={[personSchema()]}
 >
   <section class="wrap grid items-center gap-10 pt-8 md:grid-cols-[1fr_1.1fr] md:gap-16">
-    <Image src={portrait} alt="Veteriner Hekim Yunus Kurt klinikte bir Pomeranian ile" widths={[480, 720, 960]} sizes="(min-width: 768px) 42vw, 100vw" loading="eager" class="aspect-[4/5] w-full rounded-[32px] object-cover" />
+    <Image src={portrait} alt="Veteriner Hekim Yunus Kurt klinikte bir Pomeranian ile" widths={[480, 720, 960]} sizes="(min-width: 768px) 42vw, 100vw" loading="eager" class="hero-photo aspect-[4/5] w-full rounded-[32px] object-cover" />
     <div>
       <h1>Veteriner Hekim Yunus Kurt</h1>
       <p class="mt-3 text-[1.15rem] text-muted">Lupus Veteriner Kliniği kurucusu</p>
@@ -62,8 +62,8 @@ const years = new Date().getFullYear() - clinic.founded;
     <div class="wrap">
       <h2 class="max-w-2xl">Hastalarıyla</h2>
       <ul class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
-        {gallery.map((g) => (
-          <li><Image src={g.src} alt={g.alt} widths={[320, 520]} sizes="(min-width: 768px) 30vw, 48vw" class="aspect-square w-full rounded-[18px] object-cover" loading="lazy" /></li>
+        {gallery.map((g, i) => (
+          <li data-reveal style={`--i:${i % 3}`} class="zoom rounded-[18px]"><Image src={g.src} alt={g.alt} widths={[320, 520]} sizes="(min-width: 768px) 30vw, 48vw" class="aspect-square w-full rounded-[18px] object-cover" loading="lazy" /></li>
         ))}
       </ul>
     </div>
