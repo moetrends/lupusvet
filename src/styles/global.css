@@ -11,12 +11,12 @@
 @theme {
   --color-ink: #19223d;
   --color-navy: #243266;
-  --color-navy-deep: #18224a;
+  --color-navy-deep: #141f47;
   --color-red: #c0303a;
   --color-red-dark: #9e2530;
   --color-leaf: #4c7a3a;
-  --color-paper: #f7f8f6;
-  --color-mist: #e7ecf0;
+  --color-paper: #f6f8fb;
+  --color-mist: #e9eef5;
   --color-line: #d5dce3;
   --color-muted: #5a6478;
   --color-sand: #ece3d3;
@@ -86,6 +86,7 @@
     background-size: 14px 14px, 23px 23px;
     background-position: 0 0, 7px 11px;
   }
+  .icon-ring { display: inline-flex; align-items: center; justify-content: center; width: 2.9rem; height: 2.9rem; border-radius: 999px; flex-shrink: 0; border: 1.5px solid var(--color-line); color: var(--color-navy); background: white; }
   .icon-chip { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 14px; flex-shrink: 0; }
 
   .link { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }

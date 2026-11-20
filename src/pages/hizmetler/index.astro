@@ -25,7 +25,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         <li data-reveal style={`--i:${i % 3}`}>
           <a href={`/hizmetler/${s.id}`} class="card group block no-underline">
             <div class="zoom rounded-[20px]"><Image src={s.data.hero} alt={s.data.heroAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw" class="aspect-[4/3] w-full object-cover" loading="lazy" /></div>
-            <h2 class="mt-5 flex items-center gap-3 !text-[1.6rem] transition-colors group-hover:text-red"><span class="icon-chip !size-10 bg-leaf-soft text-leaf"><ServiceIcon slug={s.id} class="size-5" /></span>{s.data.title}</h2>
+            <h2 class="mt-5 flex items-center gap-3 !text-[1.6rem] transition-colors group-hover:text-red"><span class="icon-ring !size-10"><ServiceIcon slug={s.id} class="size-5" /></span>{s.data.title}</h2>
             <p class="mt-2 text-ink/80">{s.data.short}</p>
           </a>
         </li>

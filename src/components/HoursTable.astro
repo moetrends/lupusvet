@@ -1,14 +1,15 @@
 ---
 import { clinic } from '../data/clinic';
-interface Props { dark?: boolean }
-const { dark = false } = Astro.props;
+interface Props { dark?: boolean; compact?: boolean }
+const { dark = false, compact = false } = Astro.props;
+const short: Record<string, string> = { 'Pazartesi – Cumartesi': 'Pzt – Cmt', Pazar: 'Pazar' };
 ---
 <table class="w-full max-w-sm text-left">
   <tbody>
     {clinic.hours.map((h) => (
       <tr class:list={['border-b', dark ? 'border-white/10' : 'border-line']}>
-        <th scope="row" class="py-2 pr-4 font-normal">{h.label}</th>
-        <td class="py-2 text-right font-bold tabular-nums">{h.opens} – {h.closes}</td>
+        <th scope="row" class="py-2 pr-4 font-normal">{compact ? <abbr title={h.label} class="no-underline">{short[h.label] ?? h.label}</abbr> : h.label}</th>
+        <td class="whitespace-nowrap py-2 text-right font-bold tabular-nums">{h.opens} – {h.closes}</td>
       </tr>
     ))}
   </tbody>

@@ -24,80 +24,97 @@ const years = new Date().getFullYear() - clinic.founded;
   image={hero}
   schema={[personSchema()]}
 >
-  <!-- Hero -->
-  <section class="wrap grid items-center gap-10 pt-10 pb-16 md:grid-cols-[1.05fr_1fr] md:gap-14 md:pt-16">
-    <div class="order-2 md:order-1">
-      <h1 class="hero-line" style="--i:0">Çukurova’da kedi ve köpeklerin hekimi, {clinic.founded}’dan beri.</h1>
-      <p class="hero-line measure mt-6 text-[1.25rem] leading-relaxed text-ink/85" style="--i:1">
-        Mavi Bulvar’daki kliniğimizde muayene, cerrahi, görüntüleme ve laboratuvar aynı çatı altında.
-        Dostunuzla Veteriner Hekim Yunus Kurt ve ekibi ilgileniyor.
-      </p>
-      <div class="hero-line mt-8 flex flex-wrap gap-3" style="--i:2">
-        <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
-        <a href={telHref} class="btn btn-line text-navy">Ara: {clinic.phone}</a>
-      </div>
-      <a href="/yorumlar" class="hero-line mt-8 inline-flex items-center gap-3 no-underline" style="--i:3">
-        <span class="font-serif text-4xl font-semibold text-navy-deep">{clinic.rating.value.toLocaleString('tr-TR')}</span>
-        <span class="leading-tight text-muted"><span class="text-red" aria-hidden="true">★★★★★</span><br /><span class="link">Google’da {clinic.rating.count} yorum</span></span>
-      </a>
-    </div>
-    <figure class="relative order-1 md:order-2">
-      <Image src={hero} alt="Veteriner Hekim Yunus Kurt kucağında bir kedi yavrusuyla" widths={[480, 720, 960]} sizes="(min-width: 768px) 46vw, 100vw" loading="eager" fetchpriority="high" class="hero-photo aspect-[4/5] w-full rounded-[36px_36px_36px_120px] object-cover object-top md:rounded-[40px_40px_40px_160px]" />
-      <figcaption class="hero-tag absolute -bottom-4 left-6 rounded-full bg-white px-4 py-2 text-[.95rem] shadow-md md:left-auto md:right-6">Vet. Hek. Yunus Kurt</figcaption>
-    </figure>
-  </section>
-
-  <!-- Bilgi şeridi -->
-  <section aria-label="Adres ve saatler" class="border-y border-line bg-white">
-    <div class="wrap grid gap-8 py-8 md:grid-cols-3">
-      <div class="flex gap-4">
-        <span class="icon-chip bg-red-soft text-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="size-5" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
-        <div>
-        <h2 class="!text-xl">Adres</h2>
-        <p class="mt-2">{fullAddress}</p>
-        <a href={clinic.directionsUrl} target="_blank" rel="noopener" class="link mt-1 inline-block font-bold text-red">Yol tarifi al</a>
+  <!-- Hero: tam genişlik, lacivert panel + kenara taşan fotoğraf -->
+  <section class="relative overflow-hidden bg-navy-deep text-white">
+    <div class="grid md:min-h-[min(84vh,720px)] md:grid-cols-[1.05fr_1fr]">
+      <div class="relative order-2 flex items-center px-4 pt-10 pb-24 md:order-1 md:py-20 md:pr-12 md:pl-[max(1rem,calc((100vw-72rem)/2))]">
+        <div class="max-w-[34rem]">
+          <h1 class="hero-line !text-white" style="--i:0">Çukurova’da kedi ve köpeklerin hekimi, {clinic.founded}’dan beri.</h1>
+          <p class="hero-line mt-6 text-[1.22rem] leading-relaxed text-white/75" style="--i:1">
+            Mavi Bulvar’daki kliniğimizde muayene, cerrahi, görüntüleme ve laboratuvar aynı çatı altında. Dostunuzla Veteriner Hekim Yunus Kurt ve ekibi ilgileniyor.
+          </p>
+          <div class="hero-line mt-8 flex flex-wrap gap-3" style="--i:2">
+            <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
+            <a href={telHref} class="btn btn-line text-white">Ara: {clinic.phone}</a>
+          </div>
+          <dl class="hero-line mt-12 grid grid-cols-3 divide-x divide-white/15 border-t border-white/15 pt-6" style="--i:3">
+            <div class="pr-4">
+              <dt class="text-[.9rem] text-white/55">Google puanı</dt>
+              <dd class="mt-1 font-serif text-[1.9rem] leading-none font-semibold">{clinic.rating.value.toLocaleString('tr-TR')}<span class="ml-1 text-[1rem] text-white/55">/ 5</span></dd>
+              <dd class="mt-1 text-[.9rem] text-white/55"><a href="/yorumlar" class="link">{clinic.rating.count} yorum</a></dd>
+            </div>
+            <div class="px-4">
+              <dt class="text-[.9rem] text-white/55">Kuruluş</dt>
+              <dd class="mt-1 font-serif text-[1.9rem] leading-none font-semibold">{clinic.founded}</dd>
+              <dd class="mt-1 text-[.9rem] text-white/55">Mavi Bulvar</dd>
+            </div>
+            <div class="pl-4">
+              <dt class="text-[.9rem] text-white/55">Klinik içinde</dt>
+              <dd class="mt-1 text-[1.02rem] leading-snug">Röntgen, ultrason, laboratuvar</dd>
+            </div>
+          </dl>
         </div>
       </div>
-      <div class="flex gap-4">
-        <span class="icon-chip bg-leaf-soft text-leaf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" class="size-5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+      <figure class="relative order-1 md:order-2">
+        <Image src={hero} alt="Veteriner Hekim Yunus Kurt kucağında bir kedi yavrusuyla" widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 48vw, 100vw" loading="eager" fetchpriority="high" class="hero-photo aspect-[4/3.4] h-full w-full object-cover object-[50%_25%] md:absolute md:inset-0 md:aspect-auto" />
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent md:bg-gradient-to-r md:from-navy-deep/60 md:via-transparent"></div>
+        <figcaption class="hero-tag absolute bottom-5 right-5 md:bottom-24 rounded-full bg-white/95 px-4 py-2 text-[.95rem] text-navy-deep shadow-md">Vet. Hek. Yunus Kurt</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Bilgi kartı: hero'nun üstüne biner -->
+  <section aria-label="Adres ve saatler" class="wrap relative z-10 -mt-14">
+    <div class="grid gap-8 rounded-[24px] bg-white p-6 shadow-[0_1px_2px_rgba(20,32,74,.06),0_24px_48px_-24px_rgba(20,32,74,.35)] ring-1 ring-line/70 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line md:p-8">
+      <div class="flex gap-4 md:pr-8">
+        <span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="size-5" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+        <div>
+          <h2 class="!text-[1.15rem]">Adres</h2>
+          <p class="mt-1.5 text-[1.02rem] leading-snug">{fullAddress}</p>
+          <a href={clinic.directionsUrl} target="_blank" rel="noopener" class="link mt-2 inline-block font-bold text-navy">Yol tarifi al</a>
+        </div>
+      </div>
+      <div class="flex gap-4 md:px-8">
+        <span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" class="size-5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
         <div class="flex-1">
-        <h2 class="!text-xl">Çalışma saatleri</h2>
-        <div class="mt-1"><HoursTable /></div>
+          <h2 class="!text-[1.15rem]">Çalışma saatleri</h2>
+          <div class="mt-0.5 text-[1.02rem]"><HoursTable compact /></div>
         </div>
       </div>
-      <div class="flex gap-4">
-        <span class="icon-chip bg-sky text-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></span>
+      <div class="flex gap-4 md:pl-8">
+        <span class="icon-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></span>
         <div>
-        <h2 class="!text-xl">Telefon ve WhatsApp</h2>
-        <p class="mt-2"><a href={telHref} class="text-2xl font-bold text-navy no-underline">{clinic.phone}</a></p>
-        <a href={clinic.whatsapp} target="_blank" rel="noopener" class="link mt-1 inline-block text-leaf">WhatsApp’tan yazın</a>
+          <h2 class="!text-[1.15rem]">Telefon ve WhatsApp</h2>
+          <p class="mt-1.5"><a href={telHref} class="text-[1.6rem] font-bold text-navy-deep no-underline">{clinic.phone}</a></p>
+          <a href={clinic.whatsapp} target="_blank" rel="noopener" class="link mt-1 inline-block font-bold text-navy">WhatsApp’tan yazın</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Hizmetler -->
-  <section class="wrap mt-20" aria-labelledby="hizmetler-baslik">
-    <div class="grid gap-6 md:grid-cols-[1fr_2fr] md:gap-14">
-      <div>
-        <h2 id="hizmetler-baslik">Hizmetlerimiz</h2>
-        <p class="mt-4 text-ink/80">Koruyucu muayeneden ortopedik cerrahiye kadar. Tahlil ve görüntülemenin çoğu klinik içinde, aynı gün yapılıyor.</p>
-        <a href="/hizmetler" class="link mt-4 inline-block font-bold text-navy">Tüm hizmetler</a>
-      </div>
-      <ul class="grid border-t border-line sm:grid-cols-2 sm:gap-x-10">
-        {services.map((s) => (
-          <li class="border-b border-line">
-            <a href={`/hizmetler/${s.id}`} class="group flex gap-4 py-4 no-underline">
-              <span class="icon-chip mt-0.5 bg-leaf-soft text-leaf transition-colors duration-200 group-hover:bg-red group-hover:text-white"><ServiceIcon slug={s.id} class="size-[22px]" /></span>
-              <span>
-              <span class="grow-line font-serif text-[1.35rem] font-semibold text-navy-deep transition-colors group-hover:text-red">{s.data.title}</span>
-              <span class="mt-1 block text-[.98rem] leading-snug text-muted">{s.data.includes.slice(0, 3).join(', ')}</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
+  <!-- Hizmetler: çerçeveli ızgara -->
+  <section class="wrap mt-24" aria-labelledby="hizmetler-baslik">
+    <div class="mb-10 grid gap-4 md:grid-cols-[1fr_1fr] md:items-end">
+      <h2 id="hizmetler-baslik">Hizmetlerimiz</h2>
+      <p class="max-w-xl text-ink/75 md:justify-self-end">Koruyucu muayeneden ortopedik cerrahiye kadar. Tahlil ve görüntülemenin çoğu klinik içinde, aynı gün yapılıyor.</p>
     </div>
+    <ul class="grid gap-px overflow-hidden rounded-[24px] bg-line ring-1 ring-line sm:grid-cols-2 lg:grid-cols-4">
+      {services.map((s) => (
+        <li class="bg-white">
+          <a href={`/hizmetler/${s.id}`} class="group flex h-full flex-col p-6 no-underline transition-colors duration-200 hover:bg-mist/60">
+            <span class="icon-ring transition-colors duration-200 group-hover:border-navy group-hover:bg-navy group-hover:text-white"><ServiceIcon slug={s.id} class="size-[22px]" /></span>
+            <span class="mt-5 font-serif text-[1.3rem] leading-tight font-semibold text-navy-deep">{s.data.title}</span>
+            <span class="mt-2 text-[.97rem] leading-snug text-muted">{s.data.includes.slice(0, 3).join(', ')}</span>
+          </a>
+        </li>
+      ))}
+      <li class="bg-navy">
+        <a href="/hizmetler" class="group flex h-full flex-col justify-between p-6 text-white no-underline transition-colors duration-200 hover:bg-navy-deep">
+          <span class="font-serif text-[1.3rem] leading-tight font-semibold">Tüm hizmetler ve rutin işlemler</span>
+          <span class="mt-6 text-white/70">Aşı, parazit, mikroçip, tırnak kesimi ve daha fazlası</span>
+        </a>
+      </li>
+    </ul>
   </section>
 
   <!-- Hekim -->
@@ -106,7 +123,7 @@ const years = new Date().getFullYear() - clinic.founded;
     <div class="wrap relative grid items-center gap-10 md:grid-cols-[1fr_1.15fr] md:gap-16">
       <div data-reveal class="overflow-hidden rounded-[28px]"><Image src={vetPhoto} alt="Veteriner Hekim Yunus Kurt bir köpekle klinikte" widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" class="aspect-[4/5] w-full rounded-[28px] object-cover" loading="lazy" /></div>
       <div>
-        <p class="text-[1.05rem] text-[#f2b84b]">Kurucu hekim</p>
+        <p class="text-[1.05rem] text-[#a9bbdf]">Kurucu hekim</p>
         <h2 class="mt-2 !text-white">Veteriner Hekim Yunus Kurt</h2>
         <p class="measure mt-5 text-[1.2rem] leading-relaxed text-white/80">
           Lupus’u {clinic.founded}’da Mavi Bulvar’da kurdu. {years} yıldır Çukurova’daki kedi ve köpeklerin aşısından ameliyatına kadar her aşamasında yanlarında.
@@ -118,7 +135,7 @@ const years = new Date().getFullYear() - clinic.founded;
   </section>
 
   <!-- Hasta duvarı -->
-  <section class="board py-20" aria-labelledby="dostlar-baslik">
+  <section class="bg-mist py-20" aria-labelledby="dostlar-baslik">
     <div class="wrap">
     <div class="mb-10 max-w-2xl">
       <h2 id="dostlar-baslik">Muayene masamızdan geçenler</h2>

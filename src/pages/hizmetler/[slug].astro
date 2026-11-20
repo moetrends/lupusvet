@@ -29,7 +29,7 @@ const posts = (await getCollection('blog')).filter((p) => p.data.service === ent
   <article>
     <header class="wrap grid items-end gap-10 pt-8 md:grid-cols-[1.1fr_1fr]">
       <div>
-        <span class="hero-line icon-chip mb-5 bg-leaf-soft text-leaf"><ServiceIcon slug={entry.id} class="size-6" /></span>
+        <span class="hero-line icon-ring mb-5"><ServiceIcon slug={entry.id} class="size-6" /></span>
         <h1 class="hero-line">{entry.data.title}</h1>
         <p class="hero-line measure mt-5 text-[1.2rem] text-ink/85">{entry.data.short}</p>
         <div class="mt-7 flex flex-wrap gap-3">
@@ -51,7 +51,7 @@ const posts = (await getCollection('blog')).filter((p) => p.data.service === ent
           <h2 class="!text-xl">Bu başlık altında</h2>
           <ul class="mt-3 space-y-2 text-[1.02rem]">
             {entry.data.includes.map((i) => (
-              <li class="flex gap-2"><span class="mt-[.55em] size-1.5 shrink-0 rounded-full bg-leaf" aria-hidden="true"></span>{i}</li>
+              <li class="flex gap-2"><span class="mt-[.55em] size-1.5 shrink-0 rounded-full bg-navy" aria-hidden="true"></span>{i}</li>
             ))}
           </ul>
         </div>
