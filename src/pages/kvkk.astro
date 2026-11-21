@@ -1,6 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import { clinic, fullAddress } from '../data/clinic';
+import { tracking, trackersEnabled } from '../lib/tracking';
+const tools = [
+  tracking.ga4Id && 'Google Analytics',
+  tracking.googleAdsId && 'Google Ads',
+  tracking.gtmId && 'Google Tag Manager',
+  tracking.metaPixelId && 'Meta Pixel',
+].filter(Boolean).join(', ');
 ---
 <Base
   title="KVKK Aydınlatma Metni | Lupus Veteriner Kliniği"
@@ -12,7 +19,15 @@ import { clinic, fullAddress } from '../data/clinic';
     <div class="prose-lupus measure mt-8">
       <p>Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında, {clinic.name} ({fullAddress}) tarafından web sitesi ziyaretçilerini bilgilendirmek için hazırlanmıştır.</p>
       <h2>Hangi veriler işlenir?</h2>
-      <p>Bu sitede form bulunmaz ve sitemiz üzerinden ad, telefon veya e-posta gibi kişisel veri toplanmaz. Sitede çerez (cookie) kullanılmaz.</p>
+      <p>Bu sitede form bulunmaz ve sitemiz üzerinden ad, telefon veya e-posta gibi kişisel veri toplanmaz.</p>
+      {trackersEnabled ? (
+        <>
+          <h2>Çerezler</h2>
+          <p>Ziyaretçi istatistiği ve reklam ölçümü için {tools} çerezlerini, yalnızca açık rızanızla kullanırız. Sayfanın altındaki çerez bandından onay vermediğiniz sürece bu araçlar yüklenmez. Tercihinizi istediğiniz zaman altbilgideki “Çerez tercihleri” bağlantısından değiştirebilirsiniz. Bu araçlarla toplanan veriler, ilgili hizmet sağlayıcılar (Google, Meta) tarafından yurt dışındaki sunucularda işlenebilir.</p>
+        </>
+      ) : (
+        <p>Sitede çerez (cookie) kullanılmaz.</p>
+      )}
       <p>Ziyaret istatistikleri, barındırma hizmeti sağlayıcımız Vercel’in çerezsiz analiz aracıyla, kişiyi tanımlamayan toplu veriler (sayfa görüntülenme sayısı, ülke, cihaz türü) olarak tutulur.</p>
       <h2>Üçüncü taraf bağlantıları</h2>
       <p>Randevu bağlantıları Vetimiz’e, harita Google Haritalar’a, sosyal medya bağlantıları Instagram’a yönlendirir. Bu sitelerde paylaştığınız veriler ilgili sitenin kendi gizlilik politikasına tabidir. Harita, siz “Haritayı göster” düğmesine basana kadar yüklenmez.</p>

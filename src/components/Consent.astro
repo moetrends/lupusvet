@@ -1,0 +1,72 @@
+---
+// KVKK çerez onayı. Takip kodları (Analytics, Ads, Tag Manager, Meta Pixel) yalnızca ziyaretçi
+// "Kabul et" derse yüklenir. Hiç takip kodu girilmemişse bu bileşen hiçbir şey üretmez.
+import { tracking, trackersEnabled } from '../lib/tracking';
+---
+{trackersEnabled && (
+  <>
+    <div id="consent" hidden role="region" aria-label="Çerez tercihi" class="fixed inset-x-3 bottom-24 z-50 mx-auto max-w-xl rounded-[18px] bg-white p-5 shadow-[0_1px_2px_rgba(20,32,74,.08),0_24px_48px_-16px_rgba(20,32,74,.45)] ring-1 ring-line md:bottom-6">
+      <p class="text-[1rem] leading-snug text-ink">
+        Sitemizi geliştirmek ve reklamlarımızı ölçmek için ziyaretçi istatistiği çerezleri kullanmak istiyoruz. Onay vermezseniz site aynı şekilde çalışır.
+        <a href="/kvkk" class="link font-bold text-navy">Ayrıntılar</a>
+      </p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button type="button" data-consent="granted" class="btn btn-red !py-2.5">Kabul et</button>
+        <button type="button" data-consent="denied" class="btn btn-line !py-2.5 text-navy">Reddet</button>
+      </div>
+    </div>
+    <script is:inline define:vars={{ cfg: tracking }}>
+      (function () {
+        var KEY = 'lupus-consent';
+        var get = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+        var set = function (v) { try { localStorage.setItem(KEY, v); } catch (e) {} };
+        var add = function (src) { var s = document.createElement('script'); s.async = true; s.src = src; document.head.appendChild(s); };
+        function load() {
+          if (window.__lupusLoaded) return;
+          window.__lupusLoaded = true;
+          var tagIds = [cfg.ga4Id, cfg.googleAdsId].filter(Boolean);
+          if (tagIds.length) {
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () { dataLayer.push(arguments); };
+            gtag('js', new Date());
+            tagIds.forEach(function (id) { gtag('config', id); });
+            add('https://www.googletagmanager.com/gtag/js?id=' + tagIds[0]);
+          }
+          if (cfg.gtmId) {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+            add('https://www.googletagmanager.com/gtm.js?id=' + cfg.gtmId);
+          }
+          if (cfg.metaPixelId) {
+            var f = window.fbq = function () { f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
+            if (!window._fbq) window._fbq = f;
+            f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
+            add('https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', cfg.metaPixelId);
+            fbq('track', 'PageView');
+          }
+        }
+        var box = document.getElementById('consent');
+        var choice = get();
+        if (choice === 'granted') load();
+        else if (!choice) box.hidden = false;
+        box.addEventListener('click', function (e) {
+          var v = e.target.closest && e.target.closest('[data-consent]');
+          if (!v) return;
+          set(v.dataset.consent);
+          box.hidden = true;
+          if (v.dataset.consent === 'granted') load();
+        });
+        // Altbilgideki "Çerez tercihleri" bağlantısı
+        document.querySelectorAll('[data-consent-open]').forEach(function (b) {
+          b.hidden = false;
+          b.addEventListener('click', function () {
+            var wasGranted = get() === 'granted';
+            try { localStorage.removeItem(KEY); } catch (e) {}
+            if (wasGranted) location.reload(); else box.hidden = false;
+          });
+        });
+      })();
+    </script>
+  </>
+)}

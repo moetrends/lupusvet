@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /keystatic
+Disallow: /api/keystatic
 
 # AI arama motorları (ChatGPT, Perplexity, Claude, Google AI) kliniği bulabilsin
 User-agent: GPTBot

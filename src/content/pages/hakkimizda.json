@@ -1,0 +1,34 @@
+{
+  "seo": {
+    "title": "Kliniğimiz: Mavi Bulvar'da 2019'dan Beri | Lupus Veteriner",
+    "description": "Lupus Veteriner Kliniği 2019'dan beri Çukurova Mavi Bulvar'da. Dijital röntgen, Doppler ultrason, laboratuvar ve yoğun bakım kabiniyle kedi, köpek ve tavşan."
+  },
+  "title": "Mavi Bulvar’da, 2019’dan beri",
+  "body": "Lupus Veteriner Kliniği, Çukurova’da Toros Mahallesi’nde, Mavi Bulvar üzerinde hizmet veriyor. Muayene, laboratuvar, görüntüleme, ameliyat ve yoğun bakım aynı klinikte. Dostunuzu tahlil ya da röntgen için başka bir yere götürmeniz gerekmiyor.\n\nKurucu hekimimiz Yunus Kurt’un yanında Veteriner Hekim Fulya Hanım ve Veteriner Hekim Meryem Hanım çalışıyor. Kedi, köpek ve tavşanlara bakıyoruz. Adana içinde evde muayene de yapıyoruz.\n\nKlinikte mama, tasma, taşıma çantası ve bakım ürünlerinin bulunduğu bir pet shop bölümü de var.",
+  "image": "../../assets/content/hakkimizda/yunus-kurt-setter-klinik.webp",
+  "imageAlt": "Yunus Kurt klinikteki pet shop bölümünde bir İngiliz Setter ile",
+  "equipmentTitle": "Klinik donanımımız",
+  "equipmentIntro": "Tanıyı aynı gün koyabilmek için cihazlarımızın tamamı klinik içinde.",
+  "highlights": [
+    {
+      "image": "../../assets/content/hakkimizda/rontgen-tam-vucut.webp",
+      "alt": "Dijital röntgen ile çekilmiş bir tam vücut görüntüsü",
+      "title": "Dijital röntgen",
+      "text": "Fujifilm CR sistemiyle kırık, eklem, göğüs ve karın görüntüleme."
+    },
+    {
+      "image": "../../assets/content/hakkimizda/doppler-ultrason-muayene.webp",
+      "alt": "Doppler ultrason ile karın muayenesi",
+      "title": "Doppler ultrason ve ekokardiyografi",
+      "text": "Mindray Vetus 50 ile karın organları, gebelik ve kalp muayenesi."
+    },
+    {
+      "image": "../../assets/content/hakkimizda/laboratuvar-boyama.jpg",
+      "alt": "Laboratuvarda sitoloji boyaması",
+      "title": "Laboratuvar",
+      "text": "Tam kan, biyokimya ve hormon testleri klinik içinde, aynı gün."
+    }
+  ],
+  "roomImage": "../../assets/content/hakkimizda/ultrason-odasi-jinekoloji.webp",
+  "roomImageAlt": "Ultrason cihazı ve muayene masasının bulunduğu muayene odası"
+}

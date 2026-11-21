@@ -1,0 +1,73 @@
+{
+  "name": "Lupus Veteriner Kliniği",
+  "shortName": "Lupus Veteriner",
+  "phone": "0537 211 50 05",
+  "whatsappPhone": "",
+  "email": "lupusveteriner@gmail.com",
+  "address": {
+    "street": "Toros Mah. Mavi Bulvarı Kahyalar Apt. No:62/B",
+    "district": "Çukurova",
+    "city": "Adana",
+    "postalCode": "01160",
+    "landmark": "Mavi Bulvar, İkram Dondurma’nın 150 metre ilerisi"
+  },
+  "geo": {
+    "lat": 37.030914,
+    "lng": 35.2966
+  },
+  "hours": [
+    {
+      "label": "Pazartesi – Cumartesi",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "19:30"
+    },
+    {
+      "label": "Pazar",
+      "days": ["Sunday"],
+      "opens": "12:00",
+      "closes": "16:00"
+    }
+  ],
+  "bookingUrl": "https://www.vetimiz.com/klinikler/lupus-veteriner-klinigi",
+  "mapsUrl": "https://maps.app.goo.gl/sbud2GCFRcm4emvE6",
+  "mapsCidUrl": "https://www.google.com/maps?cid=6415303664903804325",
+  "instagramUrl": "https://www.instagram.com/lupus_vet/",
+  "rating": {
+    "value": 4.8,
+    "count": 108
+  },
+  "founded": 2019,
+  "vet": {
+    "name": "Yunus Kurt",
+    "title": "Veteriner Hekim",
+    "alumniOf": "Ankara Üniversitesi Veteriner Fakültesi",
+    "graduationYear": 2015,
+    "postgrad": {
+      "field": "Hayvan Besleme ve Beslenme Hastalıkları",
+      "year": 2017
+    },
+    "experienceYears": 12,
+    "previous": "Ankara’da çeşitli hayvan hastaneleri",
+    "focus": ["Kalp hastalıkları", "Ekokardiyografi"],
+    "trainings": "50’nin üzerinde eğitim ve sertifika programı",
+    "memberOf": "Adana Veteriner Hekimleri Odası",
+    "pets": "Üç kedisi var: Ponçik ve Ramo evde, Çiçek klinikte yaşıyor."
+  },
+  "team": [
+    { "name": "Fulya", "title": "Veteriner Hekim" },
+    { "name": "Meryem", "title": "Veteriner Hekim" }
+  ],
+  "species": ["Kedi", "Köpek", "Tavşan"],
+  "emergency": "Mesai dışında acil durumlarda telefonla ulaşabilirsiniz.",
+  "homeVisit": "Adana içinde evde muayene hizmeti verilmektedir.",
+  "equipment": [
+    { "name": "Fujifilm CR dijital röntgen", "use": "Kırık, eklem, göğüs ve karın görüntüleme" },
+    { "name": "Mindray Vetus 50 Doppler ultrasonografi", "use": "Karın organları, gebelik ve ekokardiyografi" },
+    { "name": "Mindray BC30 tam kan cihazı", "use": "Hemogram, aynı gün sonuç" },
+    { "name": "Mindray biyokimya cihazı", "use": "Böbrek, karaciğer ve metabolik değerler" },
+    { "name": "Mindray hormon cihazı", "use": "Tiroid ve diğer hormon testleri" },
+    { "name": "Petbrooder yoğun bakım kabini", "use": "Ameliyat sonrası ve yoğun bakım takibi" }
+  ],
+  "areaServed": ["Çukurova", "Seyhan", "Sarıçam", "Yüreğir", "Adana"]
+}

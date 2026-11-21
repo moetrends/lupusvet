@@ -5,50 +5,33 @@ import ReviewList from '../components/ReviewList.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { clinic } from '../data/clinic';
 import { personSchema } from '../lib/schema';
-import portrait from '../assets/photos/yunus-kurt-toy-poodle.webp';
-import p1 from '../assets/photos/yunus-kurt-alman-kurdu.webp';
-import p2 from '../assets/photos/yunus-kurt-setter-klinik.webp';
-import p3 from '../assets/photos/yunus-kurt-pomeranian-muayene.webp';
-import p4 from '../assets/photos/yunus-kurt-iran-kedisi.jpg';
-import p5 from '../assets/photos/yunus-kurt-cavalier.jpg';
-import p6 from '../assets/photos/yunus-kurt-french-bulldog.jpg';
-import exam from '../assets/photos/doppler-ultrason-muayene.webp';
-import drawing from '../assets/photos/yunus-kurt-cizim.webp';
+import { pageData, paragraphs } from '../lib/pages';
 
-const gallery = [
-  { src: p1, alt: 'Yunus Kurt muayene masasında bir Alman Kurdu yavrusuyla' },
-  { src: p2, alt: 'Yunus Kurt klinikte bir İngiliz Setter ile' },
-  { src: p3, alt: 'Yunus Kurt iki Pomeranian’ı muayene ediyor' },
-  { src: p4, alt: 'Yunus Kurt kucağında beyaz bir İran kedisi' },
-  { src: p5, alt: 'Yunus Kurt bir Cavalier King Charles ile' },
-  { src: p6, alt: 'Yunus Kurt kucağında bir French Bulldog' },
-];
+const page = await pageData('hekim');
 const v = clinic.vet;
 const facts = [
   { k: 'Eğitim', v: `${v.alumniOf}, ${v.graduationYear}` },
   { k: 'Yüksek lisans', v: `${v.postgrad.field}, ${v.postgrad.year}` },
   { k: 'Deneyim', v: `${v.experienceYears} yıl. Lupus’tan önce ${v.previous}` },
-  { k: 'İlgi alanı', v: 'Kalp hastalıkları ve ekokardiyografik muayene' },
+  { k: 'İlgi alanı', v: v.focus.join(', ') },
   { k: 'Eğitimler', v: v.trainings },
   { k: 'Üyelik', v: v.memberOf },
 ];
 ---
 <Base
-  title="Veteriner Hekim Yunus Kurt | Lupus Veteriner Kliniği Çukurova"
-  description="Lupus Veteriner Kliniği kurucusu Vet. Hek. Yunus Kurt: Ankara Üniversitesi mezunu, 12 yıllık deneyim, kalp hastalıkları ve ekokardiyografi. Çukurova, Adana."
-  image={portrait}
+  title={page.seo.title}
+  description={page.seo.description}
+  image={page.portrait}
   breadcrumbs={[{ name: 'Hekimimiz', url: '/veteriner-hekim-yunus-kurt' }]}
   schema={[personSchema()]}
 >
   <section class="wrap grid items-center gap-10 pt-8 md:grid-cols-[1fr_1.1fr] md:gap-16">
-    <Image src={portrait} alt="Veteriner Hekim Yunus Kurt muayene masasında bir toy poodle ile" widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" loading="eager" class="hero-photo aspect-[4/5] w-full rounded-[32px] object-cover" />
+    <Image src={page.portrait} alt={page.portraitAlt} widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" loading="eager" class="hero-photo aspect-[4/5] w-full rounded-[32px] object-cover" />
     <div>
-      <h1 class="hero-line">Veteriner Hekim Yunus Kurt</h1>
-      <p class="hero-line mt-3 text-[1.15rem] text-muted" style="--i:1">Lupus Veteriner Kliniği kurucusu</p>
+      <h1 class="hero-line">{v.title} {v.name}</h1>
+      <p class="hero-line mt-3 text-[1.15rem] text-muted" style="--i:1">{page.subtitle}</p>
       <div class="prose-lupus measure mt-7">
-        <p>Yunus Kurt küçüklüğünden beri hayvanları çok seven biri. Sevdiği hayvanlara sağlık olmak, onun için bir hayat felsefesine dönüştü.</p>
-        <p>{v.graduationYear}’te {v.alumniOf}’nden mezun oldu, {v.postgrad.year}’de {v.postgrad.field} alanında yüksek lisansını tamamladı. Ankara’da çeşitli hayvan hastanelerinde çalıştıktan sonra, bu felsefeyi kendi kliniğinde uygulamak için {clinic.founded}’da Çukurova’da Lupus Veteriner Kliniği’ni kurdu.</p>
-        <p>Özellikle kalp hastalıkları ve ekokardiyografik muayeneyle ilgileniyor. Hastalarına özverili yaklaşmayı ve sahiplerini her adımda bilgilendirmeyi önemsiyor.</p>
+        {paragraphs(page.bio).map((p) => <p>{p}</p>)}
       </div>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
@@ -71,7 +54,7 @@ const facts = [
   <section class="wrap mt-20 grid items-start gap-10 md:grid-cols-[1fr_1fr_0.8fr]">
     <div>
       <h2>Neden “Lupus”?</h2>
-      <p class="prose-lupus mt-5">Tıbbın dili Latincedir. Latincede <em>Canis lupus</em> “kurt” anlamına gelir. Yunus Kurt, soyadının Latince karşılığını kliniğine isim olarak verdi.</p>
+      <p class="prose-lupus mt-5">{page.whyLupus}</p>
     </div>
     <div>
       <h2>Klinikteki ekip arkadaşları</h2>
@@ -80,10 +63,10 @@ const facts = [
       </ul>
       <p class="mt-5 text-muted">{v.pets}</p>
     </div>
-    <figure data-reveal class="rotate-[1.5deg] rounded-[6px] bg-white p-2.5 pb-3 shadow-[0_1px_2px_rgba(20,32,74,.12),0_14px_32px_-16px_rgba(20,32,74,.4)]">
-      <Image src={drawing} alt="Yunus Kurt’un diş temizliği yaparken çizilmiş karikatürü" widths={[320, 520]} sizes="(min-width: 768px) 24vw, 80vw" class="w-full rounded-[3px]" loading="lazy" />
-      <figcaption class="mt-2 text-center text-[.9rem] text-muted">“Patili dostlar emanetimde!”</figcaption>
-    </figure>
+    {page.drawing && <figure data-reveal class="rotate-[1.5deg] rounded-[6px] bg-white p-2.5 pb-3 shadow-[0_1px_2px_rgba(20,32,74,.12),0_14px_32px_-16px_rgba(20,32,74,.4)]">
+      <Image src={page.drawing} alt={page.drawingAlt} widths={[320, 520]} sizes="(min-width: 768px) 24vw, 80vw" class="w-full rounded-[3px]" loading="lazy" />
+      {page.drawingCaption && <figcaption class="mt-2 text-center text-[.9rem] text-muted">{page.drawingCaption}</figcaption>}
+    </figure>}
   </section>
 
   <section class="wrap mt-24">
@@ -99,8 +82,8 @@ const facts = [
     <div class="wrap">
       <h2 class="max-w-2xl">Hastalarıyla</h2>
       <ul class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
-        {gallery.map((g, i) => (
-          <li data-reveal style={`--i:${i % 3}`} class="zoom rounded-[18px]"><Image src={g.src} alt={g.alt} widths={[320, 520]} sizes="(min-width: 768px) 30vw, 48vw" class="aspect-square w-full rounded-[18px] object-cover" loading="lazy" /></li>
+        {page.gallery.map((g, i) => (
+          <li data-reveal style={`--i:${i % 3}`} class="zoom rounded-[18px]"><Image src={g.image} alt={g.alt} widths={[320, 520]} sizes="(min-width: 768px) 30vw, 48vw" class="aspect-square w-full rounded-[18px] object-cover" loading="lazy" /></li>
         ))}
       </ul>
     </div>
@@ -110,13 +93,10 @@ const facts = [
     <div>
       <h2>Bir muayene nasıl geçer?</h2>
       <ol class="prose-lupus mt-6">
-        <li>Dostunuzun şikayetini ve geçmişini sizinle konuşuyoruz.</li>
-        <li>Tartı, ateş ve baştan kuyruğa fizik muayene yapıyoruz.</li>
-        <li>Gerekirse tahlil ve görüntülemeyi klinik içinde, aynı gün yapıyoruz.</li>
-        <li>Bulguları size gösteriyor, tedavi seçeneklerini ve maliyetini açıkça anlatıyoruz.</li>
+        {page.examSteps.map((s) => <li>{s}</li>)}
       </ol>
     </div>
-    <Image src={exam} alt="Yunus Kurt Doppler ultrason ile bir hastayı muayene ediyor" widths={[480, 720]} sizes="(min-width: 768px) 40vw, 100vw" class="aspect-[4/3] w-full rounded-[24px] object-cover" loading="lazy" />
+    <Image src={page.examImage} alt={page.examImageAlt} widths={[480, 720]} sizes="(min-width: 768px) 40vw, 100vw" class="aspect-[4/3] w-full rounded-[24px] object-cover" loading="lazy" />
   </section>
 
   <section class="wrap mt-24">

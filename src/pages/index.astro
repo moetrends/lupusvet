@@ -10,18 +10,17 @@ import CtaBand from '../components/CtaBand.astro';
 import ServiceIcon from '../components/ServiceIcon.astro';
 import { clinic, fullAddress, telHref } from '../data/clinic';
 import { personSchema } from '../lib/schema';
-import hero from '../assets/photos/yunus-kurt-kedi-yavrusu.jpg';
-import vetPhoto from '../assets/photos/yunus-kurt-alman-kurdu.webp';
-import clinicPhoto from '../assets/photos/yunus-kurt-setter-klinik.webp';
+import { pageData } from '../lib/pages';
+
+const page = await pageData('anasayfa');
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const posts = (await getCollection('blog')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
-const years = new Date().getFullYear() - clinic.founded;
 ---
 <Base
-  title="Lupus Veteriner Kliniği | Çukurova, Adana Veteriner Hekim Yunus Kurt"
-  description="Çukurova Mavi Bulvar'da kedi ve köpekler için muayene, cerrahi, ortopedi, ultrason, röntgen ve laboratuvar. Veteriner Hekim Yunus Kurt. Randevu: 0537 211 50 05."
-  image={hero}
+  title={page.seo.title}
+  description={page.seo.description}
+  image={page.hero.image}
   schema={[personSchema()]}
 >
   <!-- Hero: tam genişlik, lacivert panel + kenara taşan fotoğraf -->
@@ -29,10 +28,8 @@ const years = new Date().getFullYear() - clinic.founded;
     <div class="grid md:min-h-[min(84vh,720px)] md:grid-cols-[1.05fr_1fr]">
       <div class="relative order-2 flex items-center px-4 pt-10 pb-24 md:order-1 md:py-20 md:pr-12 md:pl-[max(1rem,calc((100vw-72rem)/2))]">
         <div class="max-w-[34rem]">
-          <h1 class="hero-line !text-white" style="--i:0">Çukurova’da kedi ve köpeklerin hekimi, {clinic.founded}’dan beri.</h1>
-          <p class="hero-line mt-6 text-[1.22rem] leading-relaxed text-white/75" style="--i:1">
-            Mavi Bulvar’daki kliniğimizde muayene, cerrahi, görüntüleme ve laboratuvar aynı çatı altında. Dostunuzla Veteriner Hekim Yunus Kurt ve ekibi ilgileniyor.
-          </p>
+          <h1 class="hero-line !text-white" style="--i:0">{page.hero.title}</h1>
+          <p class="hero-line mt-6 text-[1.22rem] leading-relaxed text-white/75" style="--i:1">{page.hero.lead}</p>
           <div class="hero-line mt-8 flex flex-wrap gap-3" style="--i:2">
             <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
             <a href={telHref} class="btn btn-line text-white">Ara: {clinic.phone}</a>
@@ -46,19 +43,19 @@ const years = new Date().getFullYear() - clinic.founded;
             <div class="px-4">
               <dt class="text-[.9rem] text-white/55">Kuruluş</dt>
               <dd class="mt-1 font-serif text-[1.9rem] leading-none font-semibold">{clinic.founded}</dd>
-              <dd class="mt-1 text-[.9rem] text-white/55">Mavi Bulvar</dd>
+              <dd class="mt-1 text-[.9rem] text-white/55">{clinic.address.district}</dd>
             </div>
             <div class="pl-4">
               <dt class="text-[.9rem] text-white/55">Klinik içinde</dt>
-              <dd class="mt-1 text-[1.02rem] leading-snug">Röntgen, ultrason, laboratuvar</dd>
+              <dd class="mt-1 text-[1.02rem] leading-snug">{page.hero.inClinic}</dd>
             </div>
           </dl>
         </div>
       </div>
       <figure class="relative order-1 md:order-2">
-        <Image src={hero} alt="Veteriner Hekim Yunus Kurt kucağında bir kedi yavrusuyla" widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 48vw, 100vw" loading="eager" fetchpriority="high" class="hero-photo aspect-[4/3.4] h-full w-full object-cover object-[50%_25%] md:absolute md:inset-0 md:aspect-auto" />
+        <Image src={page.hero.image} alt={page.hero.imageAlt} widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 48vw, 100vw" loading="eager" fetchpriority="high" class="hero-photo aspect-[4/3.4] h-full w-full object-cover object-[50%_25%] md:absolute md:inset-0 md:aspect-auto" />
         <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent md:bg-gradient-to-r md:from-navy-deep/60 md:via-transparent"></div>
-        <figcaption class="hero-tag absolute bottom-5 right-5 md:bottom-24 rounded-full bg-white/95 px-4 py-2 text-[.95rem] text-navy-deep shadow-md">Vet. Hek. Yunus Kurt</figcaption>
+        <figcaption class="hero-tag absolute bottom-5 right-5 md:bottom-24 rounded-full bg-white/95 px-4 py-2 text-[.95rem] text-navy-deep shadow-md">{page.hero.caption}</figcaption>
       </figure>
     </div>
   </section>
@@ -95,8 +92,8 @@ const years = new Date().getFullYear() - clinic.founded;
   <!-- Hizmetler: çerçeveli ızgara -->
   <section class="wrap mt-24" aria-labelledby="hizmetler-baslik">
     <div class="mb-10 grid gap-4 md:grid-cols-[1fr_1fr] md:items-end">
-      <h2 id="hizmetler-baslik">Hizmetlerimiz</h2>
-      <p class="max-w-xl text-ink/75 md:justify-self-end">Koruyucu muayeneden ortopedik cerrahiye kadar. Tahlil ve görüntülemenin çoğu klinik içinde, aynı gün yapılıyor.</p>
+      <h2 id="hizmetler-baslik">{page.services.title}</h2>
+      <p class="max-w-xl text-ink/75 md:justify-self-end">{page.services.intro}</p>
     </div>
     <ul class="grid gap-px overflow-hidden rounded-[24px] bg-line ring-1 ring-line sm:grid-cols-2 lg:grid-cols-4">
       {services.map((s) => (
@@ -121,14 +118,11 @@ const years = new Date().getFullYear() - clinic.founded;
   <section class="relative mt-24 overflow-hidden bg-navy-deep py-20 text-white">
     <div aria-hidden="true" class="pointer-events-none absolute -right-24 -top-24 size-[28rem] rounded-full bg-navy opacity-60"></div>
     <div class="wrap relative grid items-center gap-10 md:grid-cols-[1fr_1.15fr] md:gap-16">
-      <div data-reveal class="overflow-hidden rounded-[28px]"><Image src={vetPhoto} alt="Veteriner Hekim Yunus Kurt muayene masasında bir Alman Kurdu yavrusuyla" widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" class="aspect-[4/5] w-full rounded-[28px] object-cover" loading="lazy" /></div>
+      <div data-reveal class="overflow-hidden rounded-[28px]"><Image src={page.vet.image} alt={page.vet.imageAlt} widths={[480, 720]} sizes="(min-width: 768px) 42vw, 100vw" class="aspect-[4/5] w-full rounded-[28px] object-cover" loading="lazy" /></div>
       <div>
         <p class="text-[1.05rem] text-[#a9bbdf]">Kurucu hekim</p>
-        <h2 class="mt-2 !text-white">Veteriner Hekim Yunus Kurt</h2>
-        <p class="measure mt-5 text-[1.2rem] leading-relaxed text-white/80">
-          Ankara Üniversitesi Veteriner Fakültesi mezunu, {clinic.vet.experienceYears} yıllık hekim. Lupus’u {clinic.founded}’da Mavi Bulvar’da kurdu. Özel ilgi alanı kalp hastalıkları ve ekokardiyografi.
-          Hasta sahiplerimizin yorumlarında en çok geçen kelimeler “ilgili” ve “vicdanlı”.
-        </p>
+        <h2 class="mt-2 !text-white">{clinic.vet.title} {clinic.vet.name}</h2>
+        <p class="measure mt-5 text-[1.2rem] leading-relaxed text-white/80">{page.vet.text}</p>
         <a href="/veteriner-hekim-yunus-kurt" class="btn btn-line mt-7 text-white">Hekimimizi tanıyın</a>
       </div>
     </div>
@@ -138,8 +132,8 @@ const years = new Date().getFullYear() - clinic.founded;
   <section class="bg-mist py-20" aria-labelledby="dostlar-baslik">
     <div class="wrap">
     <div class="mb-10 max-w-2xl">
-      <h2 id="dostlar-baslik">Muayene masamızdan geçenler</h2>
-      <p class="mt-4 text-ink/80">Hepsi gerçek hastalarımız. Daha fazlası ve vaka hikâyeleri <a href={clinic.instagramUrl} target="_blank" rel="noopener" class="link font-bold text-navy">Instagram hesabımızda</a>.</p>
+      <h2 id="dostlar-baslik">{page.wall.title}</h2>
+      <p class="mt-4 text-ink/80">{page.wall.text} <a href={clinic.instagramUrl} target="_blank" rel="noopener" class="link font-bold text-navy">Daha fazlası ve vaka hikâyeleri Instagram hesabımızda</a>.</p>
     </div>
     <PatientWall />
     </div>
@@ -180,7 +174,7 @@ const years = new Date().getFullYear() - clinic.founded;
       <h2 id="konum-baslik">Bizi nasıl bulursunuz?</h2>
       <p class="mt-4">{fullAddress}</p>
       <p class="mt-2 text-muted">{clinic.address.landmark}.</p>
-      <Image data-reveal src={clinicPhoto} alt="Yunus Kurt klinikte bir İngiliz Setter ile" widths={[400, 640]} sizes="(min-width: 768px) 35vw, 100vw" class="mt-6 aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
+      <Image data-reveal src={page.location.image} alt={page.location.imageAlt} widths={[400, 640]} sizes="(min-width: 768px) 35vw, 100vw" class="mt-6 aspect-[4/3] w-full rounded-[20px] object-cover" loading="lazy" />
     </div>
     <MapEmbed />
   </section>

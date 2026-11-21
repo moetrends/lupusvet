@@ -2,11 +2,11 @@
 import Base from '../layouts/Base.astro';
 import HoursTable from '../components/HoursTable.astro';
 import MapEmbed from '../components/MapEmbed.astro';
-import { clinic, fullAddress, telHref } from '../data/clinic';
+import { clinic, fullAddress, telHref, hoursSummary } from '../data/clinic';
 ---
 <Base
   title="İletişim ve Yol Tarifi | Lupus Veteriner Kliniği Çukurova"
-  description="Lupus Veteriner Kliniği: Toros Mah. Mavi Bulvarı No:62/B Çukurova/Adana. Telefon 0537 211 50 05. Pazartesi-Cumartesi 09:00-19:30, Pazar 12:00-16:00."
+  description={`${clinic.address.street}, ${clinic.address.district}/${clinic.address.city}. Tel ${clinic.phone}. ${hoursSummary}.`.slice(0, 170)}
   breadcrumbs={[{ name: 'İletişim', url: '/iletisim' }]}
 >
   <section class="wrap pt-8">

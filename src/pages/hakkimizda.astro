@@ -4,45 +4,35 @@ import Base from '../layouts/Base.astro';
 import PatientWall from '../components/PatientWall.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { clinic, fullAddress } from '../data/clinic';
-import lead from '../assets/photos/yunus-kurt-setter-klinik.webp';
-import usgRoom from '../assets/photos/ultrason-odasi-jinekoloji.webp';
-import xray from '../assets/photos/rontgen-tam-vucut.webp';
-import usg from '../assets/photos/doppler-ultrason-muayene.webp';
-import lab from '../assets/photos/laboratuvar-boyama.jpg';
+import { pageData, paragraphs } from '../lib/pages';
 
-const highlights = [
-  { img: xray, alt: 'Dijital röntgen ile çekilmiş bir tam vücut görüntüsü', title: 'Dijital röntgen', text: 'Fujifilm CR sistemiyle kırık, eklem, göğüs ve karın görüntüleme.', pos: 'object-center' },
-  { img: usg, alt: 'Doppler ultrason ile karın muayenesi', title: 'Doppler ultrason ve ekokardiyografi', text: 'Mindray Vetus 50 ile karın organları, gebelik ve kalp muayenesi.', pos: 'object-[50%_25%]' },
-  { img: lab, alt: 'Laboratuvarda sitoloji boyaması', title: 'Laboratuvar', text: 'Tam kan, biyokimya ve hormon testleri klinik içinde, aynı gün.', pos: 'object-center' },
-];
+const page = await pageData('hakkimizda');
 ---
 <Base
-  title="Kliniğimiz: Mavi Bulvar'da 2019'dan Beri | Lupus Veteriner"
-  description="Lupus Veteriner Kliniği 2019'dan beri Çukurova Mavi Bulvar'da. Dijital röntgen, Doppler ultrason, laboratuvar ve yoğun bakım kabiniyle kedi, köpek ve tavşan."
-  image={lead}
+  title={page.seo.title}
+  description={page.seo.description}
+  image={page.image}
   breadcrumbs={[{ name: 'Kliniğimiz', url: '/hakkimizda' }]}
 >
   <section class="wrap grid items-center gap-10 pt-8 md:grid-cols-[1.1fr_1fr]">
     <div>
-      <h1 class="hero-line">Mavi Bulvar’da, {clinic.founded}’dan beri</h1>
+      <h1 class="hero-line">{page.title}</h1>
       <div class="prose-lupus measure mt-6">
-        <p>Lupus Veteriner Kliniği, Çukurova’da Toros Mahallesi’nde, Mavi Bulvar üzerinde hizmet veriyor. Muayene, laboratuvar, görüntüleme, ameliyat ve yoğun bakım aynı klinikte. Dostunuzu tahlil ya da röntgen için başka bir yere götürmeniz gerekmiyor.</p>
-        <p>Kurucu hekimimiz Yunus Kurt’un yanında Veteriner Hekim Fulya Hanım ve Veteriner Hekim Meryem Hanım çalışıyor. Kedi, köpek ve tavşanlara bakıyoruz. Adana içinde evde muayene de yapıyoruz.</p>
-        <p>Klinikte mama, tasma, taşıma çantası ve bakım ürünlerinin bulunduğu bir pet shop bölümü de var.</p>
+        {paragraphs(page.body).map((p) => <p>{p}</p>)}
       </div>
     </div>
-    <Image src={lead} alt="Yunus Kurt klinikteki pet shop bölümünde bir İngiliz Setter ile" widths={[480, 768]} sizes="(min-width: 768px) 45vw, 100vw" loading="eager" class="hero-photo aspect-[4/5] w-full rounded-[32px] object-cover" />
+    <Image src={page.image} alt={page.imageAlt} widths={[480, 768]} sizes="(min-width: 768px) 45vw, 100vw" loading="eager" class="hero-photo aspect-[4/5] w-full rounded-[32px] object-cover" />
   </section>
 
   <section class="wrap mt-24">
     <div class="mb-10 grid gap-4 md:grid-cols-2 md:items-end">
-      <h2>Klinik donanımımız</h2>
-      <p class="max-w-xl text-ink/75 md:justify-self-end">Tanıyı aynı gün koyabilmek için cihazlarımızın tamamı klinik içinde.</p>
+      <h2>{page.equipmentTitle}</h2>
+      <p class="max-w-xl text-ink/75 md:justify-self-end">{page.equipmentIntro}</p>
     </div>
     <ul class="grid gap-10 md:grid-cols-3">
-      {highlights.map((e, i) => (
+      {page.highlights.map((e, i) => (
         <li data-reveal style={`--i:${i}`}>
-          <div class="zoom rounded-[20px]"><Image src={e.img} alt={e.alt} widths={[400, 640]} sizes="(min-width: 768px) 30vw, 100vw" class:list={['aspect-[4/3] w-full object-cover', e.pos]} loading="lazy" /></div>
+          <div class="zoom rounded-[20px]"><Image src={e.image} alt={e.alt} widths={[400, 640]} sizes="(min-width: 768px) 30vw, 100vw" class="aspect-[4/3] w-full object-cover object-[50%_30%]" loading="lazy" /></div>
           <h3 class="mt-4">{e.title}</h3>
           <p class="mt-1 text-ink/80">{e.text}</p>
         </li>
@@ -50,7 +40,7 @@ const highlights = [
     </ul>
 
     <div class="mt-14 grid items-start gap-10 md:grid-cols-[1fr_1.2fr]">
-      <Image src={usgRoom} alt="Ultrason cihazı ve muayene masasının bulunduğu muayene odası" widths={[480, 768]} sizes="(min-width: 768px) 40vw, 100vw" class="aspect-[4/3] w-full rounded-[24px] object-cover" loading="lazy" />
+      <Image src={page.roomImage} alt={page.roomImageAlt} widths={[480, 768]} sizes="(min-width: 768px) 40vw, 100vw" class="aspect-[4/3] w-full rounded-[24px] object-cover" loading="lazy" />
       <table class="w-full text-left">
         <caption class="sr-only">Klinikteki cihazlar</caption>
         <tbody class="divide-y divide-line border-y border-line">

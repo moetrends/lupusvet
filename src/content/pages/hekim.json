@@ -1,0 +1,30 @@
+{
+  "seo": {
+    "title": "Veteriner Hekim Yunus Kurt | Lupus Veteriner Kliniği Çukurova",
+    "description": "Lupus Veteriner Kliniği kurucusu Vet. Hek. Yunus Kurt: Ankara Üniversitesi mezunu, 12 yıllık deneyim, kalp hastalıkları ve ekokardiyografi. Çukurova, Adana."
+  },
+  "subtitle": "Lupus Veteriner Kliniği kurucusu",
+  "bio": "Yunus Kurt küçüklüğünden beri hayvanları çok seven biri. Sevdiği hayvanlara sağlık olmak, onun için bir hayat felsefesine dönüştü.\n\n2015’te Ankara Üniversitesi Veteriner Fakültesi’nden mezun oldu, 2017’de Hayvan Besleme ve Beslenme Hastalıkları alanında yüksek lisansını tamamladı. Ankara’da çeşitli hayvan hastanelerinde çalıştıktan sonra, bu felsefeyi kendi kliniğinde uygulamak için 2019’da Çukurova’da Lupus Veteriner Kliniği’ni kurdu.\n\nÖzellikle kalp hastalıkları ve ekokardiyografik muayeneyle ilgileniyor. Hastalarına özverili yaklaşmayı ve sahiplerini her adımda bilgilendirmeyi önemsiyor.",
+  "portrait": "../../assets/content/hekim/yunus-kurt-toy-poodle.webp",
+  "portraitAlt": "Veteriner Hekim Yunus Kurt muayene masasında bir toy poodle ile",
+  "whyLupus": "Tıbbın dili Latincedir. Latincede Canis lupus “kurt” anlamına gelir. Yunus Kurt, soyadının Latince karşılığını kliniğine isim olarak verdi.",
+  "drawing": "../../assets/content/hekim/yunus-kurt-cizim.webp",
+  "drawingAlt": "Yunus Kurt’un diş temizliği yaparken çizilmiş karikatürü",
+  "drawingCaption": "“Patili dostlar emanetimde!”",
+  "gallery": [
+    { "image": "../../assets/content/hekim/yunus-kurt-alman-kurdu.webp", "alt": "Yunus Kurt muayene masasında bir Alman Kurdu yavrusuyla" },
+    { "image": "../../assets/content/hekim/yunus-kurt-setter-klinik.webp", "alt": "Yunus Kurt klinikte bir İngiliz Setter ile" },
+    { "image": "../../assets/content/hekim/yunus-kurt-pomeranian-muayene.webp", "alt": "Yunus Kurt iki Pomeranian’ı muayene ediyor" },
+    { "image": "../../assets/content/hekim/yunus-kurt-iran-kedisi.jpg", "alt": "Yunus Kurt kucağında beyaz bir İran kedisi" },
+    { "image": "../../assets/content/hekim/yunus-kurt-cavalier.jpg", "alt": "Yunus Kurt bir Cavalier King Charles ile" },
+    { "image": "../../assets/content/hekim/yunus-kurt-french-bulldog.jpg", "alt": "Yunus Kurt kucağında bir French Bulldog" }
+  ],
+  "examSteps": [
+    "Dostunuzun şikayetini ve geçmişini sizinle konuşuyoruz.",
+    "Tartı, ateş ve baştan kuyruğa fizik muayene yapıyoruz.",
+    "Gerekirse tahlil ve görüntülemeyi klinik içinde, aynı gün yapıyoruz.",
+    "Bulguları size gösteriyor, tedavi seçeneklerini ve maliyetini açıkça anlatıyoruz."
+  ],
+  "examImage": "../../assets/content/hekim/doppler-ultrason-muayene.webp",
+  "examImageAlt": "Yunus Kurt Doppler ultrason ile bir hastayı muayene ediyor"
+}

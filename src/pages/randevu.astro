@@ -5,7 +5,7 @@ import { clinic, telHref } from '../data/clinic';
 ---
 <Base
   title="Online Randevu Al | Lupus Veteriner Kliniği Çukurova Adana"
-  description="Lupus Veteriner Kliniği'nden Vetimiz üzerinden online randevu alın veya 0537 211 50 05'i arayın. Acil durumlarda randevusuz gelebilirsiniz."
+  description={`${clinic.name}'nden Vetimiz üzerinden online randevu alın veya ${clinic.phone} numarasını arayın. Acil durumlarda randevusuz gelebilirsiniz.`}
   breadcrumbs={[{ name: 'Randevu', url: '/randevu' }]}
 >
   <section class="wrap pt-8">

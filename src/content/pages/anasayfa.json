@@ -1,0 +1,31 @@
+{
+  "seo": {
+    "title": "Lupus Veteriner Kliniği | Çukurova, Adana Veteriner Hekim Yunus Kurt",
+    "description": "Çukurova Mavi Bulvar'da kedi ve köpekler için muayene, cerrahi, ortopedi, ultrason, röntgen ve laboratuvar. Veteriner Hekim Yunus Kurt. Randevu: 0537 211 50 05."
+  },
+  "hero": {
+    "title": "Çukurova’da kedi ve köpeklerin hekimi, 2019’dan beri.",
+    "lead": "Mavi Bulvar’daki kliniğimizde muayene, cerrahi, görüntüleme ve laboratuvar aynı çatı altında. Dostunuzla Veteriner Hekim Yunus Kurt ve ekibi ilgileniyor.",
+    "image": "../../assets/content/anasayfa/hero/image.jpg",
+    "imageAlt": "Veteriner Hekim Yunus Kurt kucağında bir kedi yavrusuyla",
+    "caption": "Vet. Hek. Yunus Kurt",
+    "inClinic": "Röntgen, ultrason, laboratuvar"
+  },
+  "services": {
+    "title": "Hizmetlerimiz",
+    "intro": "Koruyucu muayeneden ortopedik cerrahiye kadar. Tahlil ve görüntülemenin çoğu klinik içinde, aynı gün yapılıyor."
+  },
+  "vet": {
+    "image": "../../assets/content/anasayfa/vet/image.webp",
+    "imageAlt": "Veteriner Hekim Yunus Kurt muayene masasında bir Alman Kurdu yavrusuyla",
+    "text": "Ankara Üniversitesi Veteriner Fakültesi mezunu, 12 yıllık hekim. Lupus’u 2019’da Mavi Bulvar’da kurdu. Özel ilgi alanı kalp hastalıkları ve ekokardiyografi. Hasta sahiplerimizin yorumlarında en çok geçen kelimeler “ilgili” ve “vicdanlı”."
+  },
+  "wall": {
+    "title": "Muayene masamızdan geçenler",
+    "text": "Hepsi gerçek hastalarımız."
+  },
+  "location": {
+    "image": "../../assets/content/anasayfa/location/image.webp",
+    "imageAlt": "Yunus Kurt klinikte bir İngiliz Setter ile"
+  }
+}

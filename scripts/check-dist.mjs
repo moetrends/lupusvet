@@ -5,7 +5,9 @@ import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
+// Vercel adaptörüyle statik sayfalar dist/client altına üretilir.
+const ROOT = fileURLToPath(new URL('../dist/', import.meta.url));
+const DIST = existsSync(join(ROOT, 'client')) ? join(ROOT, 'client') : ROOT;
 
 function walk(dir) {
   return readdirSync(dir).flatMap((f) => {
@@ -137,7 +139,18 @@ test('hekim sayfası doğrulanmış özgeçmişi taşıyor', () => {
 test('sitemap, robots.txt, llms.txt var', () => {
   assert.ok(existsSync(join(DIST, 'sitemap-index.xml')), 'sitemap-index.xml');
   assert.match(readFileSync(join(DIST, 'robots.txt'), 'utf8'), /Sitemap: https:\/\/lupusveteriner\.com\/sitemap-index\.xml/);
-  assert.ok(existsSync(join(DIST, 'llms.txt')), 'llms.txt');
+  const llms = readFileSync(join(DIST, 'llms.txt'), 'utf8');
+  assert.match(llms, /0537 211 50 05/, 'llms.txt telefon');
+  assert.match(llms, /hizmetler\/cerrahi/, 'llms.txt hizmet listesi');
+  assert.doesNotMatch(readFileSync(join(DIST, 'sitemap-0.xml'), 'utf8'), /keystatic/, 'panel sitemap’te olmamalı');
+});
+
+test('takip kodu yokken çerez bandı ve takip betiği yok', () => {
+  const takip = JSON.parse(readFileSync(new URL('../src/data/takip.json', import.meta.url), 'utf8'));
+  if (takip.ga4Id || takip.gtmId || takip.googleAdsId || takip.metaPixelId) return;
+  for (const p of contentPages) {
+    assert.doesNotMatch(p.html, /id="consent"|googletagmanager|fbevents/, `${p.route}: izinsiz takip`);
+  }
 });
 
 test('Search Console doğrulama dosyası değişmeden yayında', () => {
