@@ -14,7 +14,10 @@ function walk(dir) {
   });
 }
 
-const htmlFiles = existsSync(DIST) ? walk(DIST).filter((f) => f.endsWith('.html')) : [];
+// google*.html: Search Console doğrulama dosyası, sayfa değil.
+const htmlFiles = existsSync(DIST)
+  ? walk(DIST).filter((f) => f.endsWith('.html') && !/\/google[0-9a-f]+\.html$/.test(f))
+  : [];
 const pages = htmlFiles.map((file) => {
   const html = readFileSync(file, 'utf8');
   let route = '/' + relative(DIST, file).replace(/index\.html$/, '').replace(/\.html$/, '');
@@ -135,4 +138,10 @@ test('sitemap, robots.txt, llms.txt var', () => {
   assert.ok(existsSync(join(DIST, 'sitemap-index.xml')), 'sitemap-index.xml');
   assert.match(readFileSync(join(DIST, 'robots.txt'), 'utf8'), /Sitemap: https:\/\/lupusveteriner\.com\/sitemap-index\.xml/);
   assert.ok(existsSync(join(DIST, 'llms.txt')), 'llms.txt');
+});
+
+test('Search Console doğrulama dosyası değişmeden yayında', () => {
+  const f = join(DIST, 'google24163d6dd3ce3531.html');
+  assert.ok(existsSync(f), 'doğrulama dosyası yok');
+  assert.equal(readFileSync(f, 'utf8').trim(), 'google-site-verification: google24163d6dd3ce3531.html');
 });
