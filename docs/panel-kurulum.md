@@ -4,7 +4,7 @@ Panel Keystatic ile yapıldı. Yunus Bey `https://lupusveteriner.com/keystatic` 
 
 Girişi **Keystatic Cloud** yönetir. Yunus Bey'in GitHub hesabı olması gerekmez, e-postasıyla giriş yapar. Ücretsiz planda bir takımda en fazla 3 kullanıcı olabilir.
 
-Proje kimliği girilmediği sürece canlı sitede panel giriş ekranında hata verir ve içerik kaydedemez. Yani kurulum bitene kadar kimse siteyi panelden değiştiremez.
+**Durum (2026-11-21): kurulum tamamlandı.** Takım `lupus-veteriner`, proje `lupusvet`, proje kimliği `lupus-veteriner/lupusvet` (koda yazılı, Vercel değişkeni gerekmez). Aşağıdaki adımlar yeniden kurulum gerekirse diye duruyor.
 
 ## 1. Keystatic Cloud projesi (repo sahibi yapar)
 
@@ -14,7 +14,9 @@ Proje kimliği girilmediği sürece canlı sitede panel giriş ekranında hata v
 4. Proje oluşunca proje kimliğini kopyalayın. `takım/proje` biçimindedir, örneğin `lupus/lupusvet`.
 5. Proje ayarlarında site adresi sorulursa `https://lupusveteriner.com` yazın.
 
-## 2. Vercel ortam değişkeni
+## 2. Vercel ortam değişkeni (isteğe bağlı)
+
+Proje kimliği `keystatic.config.tsx` içinde yazılı. Farklı bir proje kullanılacaksa kodu değiştirmek yerine bu değişken girilebilir.
 
 1. Vercel → proje → **Settings → Environment Variables**.
 2. Yeni değişken ekleyin:

@@ -51,9 +51,9 @@ const DAYS = [
 
 export default config({
   // Canlıda her zaman Cloud: yerel mod sunucuda dosya okuma/yazma API'si açar, yayında kapalı kalmalı.
-  // PUBLIC_KEYSTATIC_PROJECT girilene kadar panel giriş ekranında hata verir, içerik değişmez.
+  // Keystatic Cloud projesi: keystatic.cloud → Lupus Veteriner takımı → lupusvet.
   storage: import.meta.env.PROD ? { kind: 'cloud' } : { kind: 'local' },
-  cloud: { project: cloudProject || 'kurulum/bekleniyor' },
+  cloud: { project: cloudProject || 'lupus-veteriner/lupusvet' },
   locale: 'en-US',
   ui: {
     brand: { name: 'Lupus Veteriner' },
