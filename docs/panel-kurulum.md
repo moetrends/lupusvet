@@ -4,7 +4,7 @@ Panel Keystatic ile yapıldı. Yunus Bey `https://lupusveteriner.com/keystatic` 
 
 Girişi **Keystatic Cloud** yönetir. Yunus Bey'in GitHub hesabı olması gerekmez, e-postasıyla giriş yapar. Ücretsiz planda bir takımda en fazla 3 kullanıcı olabilir.
 
-Proje kimliği girilmediği sürece canlı sitede panel içerik kaydedemez (API 404 döner). Yani kurulum bitene kadar kimse siteyi panelden değiştiremez.
+Proje kimliği girilmediği sürece canlı sitede panel giriş ekranında hata verir ve içerik kaydedemez. Yani kurulum bitene kadar kimse siteyi panelden değiştiremez.
 
 ## 1. Keystatic Cloud projesi (repo sahibi yapar)
 

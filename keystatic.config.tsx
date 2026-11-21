@@ -50,9 +50,10 @@ const DAYS = [
 ] as const;
 
 export default config({
-  storage:
-    import.meta.env.PROD && cloudProject ? { kind: 'cloud' } : { kind: 'local' },
-  ...(cloudProject ? { cloud: { project: cloudProject } } : {}),
+  // Canlıda her zaman Cloud: yerel mod sunucuda dosya okuma/yazma API'si açar, yayında kapalı kalmalı.
+  // PUBLIC_KEYSTATIC_PROJECT girilene kadar panel giriş ekranında hata verir, içerik değişmez.
+  storage: import.meta.env.PROD ? { kind: 'cloud' } : { kind: 'local' },
+  cloud: { project: cloudProject || 'kurulum/bekleniyor' },
   locale: 'en-US',
   ui: {
     brand: { name: 'Lupus Veteriner' },
