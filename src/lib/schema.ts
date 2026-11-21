@@ -54,7 +54,6 @@ export function personSchema() {
     jobTitle: clinic.vet.title,
     url: abs('/veteriner-hekim-yunus-kurt'),
     worksFor: { '@id': ORG_ID },
-    sameAs: [clinic.vet.instagram],
     alumniOf: clinic.vet.alumniOf ? { '@type': 'CollegeOrUniversity', name: clinic.vet.alumniOf } : undefined,
     knowsAbout: clinic.vet.focus,
     memberOf: { '@type': 'Organization', name: clinic.vet.memberOf },

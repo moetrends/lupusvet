@@ -13,6 +13,7 @@ import p4 from '../assets/photos/yunus-kurt-iran-kedisi.jpg';
 import p5 from '../assets/photos/yunus-kurt-cavalier.jpg';
 import p6 from '../assets/photos/yunus-kurt-french-bulldog.jpg';
 import exam from '../assets/photos/doppler-ultrason-muayene.webp';
+import drawing from '../assets/photos/yunus-kurt-cizim.webp';
 
 const gallery = [
   { src: p1, alt: 'Yunus Kurt muayene masasında bir Alman Kurdu yavrusuyla' },
@@ -51,7 +52,7 @@ const facts = [
       </div>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href={clinic.bookingUrl} target="_blank" rel="noopener" class="btn btn-red">Randevu al</a>
-        <a href={v.instagram} target="_blank" rel="noopener" class="btn btn-line text-navy">Instagram: @ykurtt</a>
+        <a href={clinic.instagramUrl} target="_blank" rel="noopener" class="btn btn-line text-navy">Kliniğin Instagram hesabı</a>
       </div>
     </div>
   </section>
@@ -67,7 +68,7 @@ const facts = [
     </dl>
   </section>
 
-  <section class="wrap mt-20 grid gap-10 md:grid-cols-2">
+  <section class="wrap mt-20 grid items-start gap-10 md:grid-cols-[1fr_1fr_0.8fr]">
     <div>
       <h2>Neden “Lupus”?</h2>
       <p class="prose-lupus mt-5">Tıbbın dili Latincedir. Latincede <em>Canis lupus</em> “kurt” anlamına gelir. Yunus Kurt, soyadının Latince karşılığını kliniğine isim olarak verdi.</p>
@@ -79,6 +80,10 @@ const facts = [
       </ul>
       <p class="mt-5 text-muted">{v.pets}</p>
     </div>
+    <figure data-reveal class="rotate-[1.5deg] rounded-[6px] bg-white p-2.5 pb-3 shadow-[0_1px_2px_rgba(20,32,74,.12),0_14px_32px_-16px_rgba(20,32,74,.4)]">
+      <Image src={drawing} alt="Yunus Kurt’un diş temizliği yaparken çizilmiş karikatürü" widths={[320, 520]} sizes="(min-width: 768px) 24vw, 80vw" class="w-full rounded-[3px]" loading="lazy" />
+      <figcaption class="mt-2 text-center text-[.9rem] text-muted">“Patili dostlar emanetimde!”</figcaption>
+    </figure>
   </section>
 
   <section class="wrap mt-24">

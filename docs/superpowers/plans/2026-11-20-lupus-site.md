@@ -37,7 +37,7 @@
 **Files:** Create `package.json`, `astro.config.mjs`, `tsconfig.json`, `.gitignore`, `src/styles/global.css`, `src/data/clinic.ts`, `src/layouts/Base.astro`, `src/components/{Header,Footer,MobileBar,Logo}.astro`, `public/favicon.svg`, `scripts/check-dist.mjs`.
 
 **Interfaces — Produces:**
-- `clinic` (default export of `src/data/clinic.ts`): `{ name, phone, phoneE164, whatsapp, address:{street, district:'Çukurova', city:'Adana', postalCode:'01160', country:'TR'}, geo:{lat,lng}, hours: {days:string[], opens:string, closes:string}[], bookingUrl, mapsUrl, instagramUrl, rating:{value:4.8,count:108}, founded:2019, vet:{name:'Yunus Kurt', title:'Veteriner Hekim', instagram:'https://www.instagram.com/ykurtt/', alumniOf?:string, bio?:string} }`.
+- `clinic` (default export of `src/data/clinic.ts`): `{ name, phone, phoneE164, whatsapp, address:{street, district:'Çukurova', city:'Adana', postalCode:'01160', country:'TR'}, geo:{lat,lng}, hours: {days:string[], opens:string, closes:string}[], bookingUrl, mapsUrl, instagramUrl, rating:{value:4.8,count:108}, founded:2019, vet:{name:'Yunus Kurt', title:'Veteriner Hekim', alumniOf?:string, bio?:string} }`.
 - `Base.astro` props: `{ title: string; description: string; image?: ImageMetadata|string; schema?: object[]; breadcrumbs?: {name:string; url:string}[] }`.
 
 - [ ] Step 1: `npm create astro` yerine elle `package.json` (astro, @astrojs/mdx, @astrojs/sitemap, tailwindcss, @tailwindcss/vite), `git init`.

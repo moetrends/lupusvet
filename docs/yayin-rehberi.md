@@ -2,19 +2,39 @@
 
 Site Vercel'de yayında. Aşağıdaki adımlar hesap girişi gerektirdiği için sizin tarafınızdan yapılır.
 
-## 1. Domaini bağlama (İsimtescil)
+## 1. Domaini bağlama
 
-1. https://www.isimtescil.net → Giriş → Alan Adlarım → `lupusveteriner.com` → **DNS Yönetimi**.
-2. Varsa eski `A` ve `CNAME (www)` kayıtlarını silin.
-3. Şu kayıtları ekleyin:
+**Mevcut durum (2026-11-21 kontrolü):** `.com` kaydı domaini `lin27.isimtescil.net` ve `lin28.isimtescil.net` sunucularına yönlendiriyor, ama bu sunucular `lupusveteriner.com` sorgularını reddediyor (`REFUSED`). Yani İsimtescil'de domain için aktif bir DNS bölgesi yok. Kayıt eklemeden önce aşağıdaki iki yoldan birini seçin.
+
+### Yol A (önerilen): Nameserver'ları Vercel'e çevirmek
+
+1. Vercel → proje → **Settings → Domains** → `lupusveteriner.com` ekleyin. `www.lupusveteriner.com`'u da ekleyip `lupusveteriner.com`'a yönlendirin (Redirect, 308).
+2. Vercel "Nameservers" seçeneğini gösterir: `ns1.vercel-dns.com` ve `ns2.vercel-dns.com`.
+3. İsimtescil → Alan Adlarım → `lupusveteriner.com` → **Ad Sunucuları (Nameserver)** → "Özel ad sunucusu" → bu iki değeri yazıp kaydedin.
+4. Yayılma birkaç dakika ile 24 saat sürebilir. Vercel'de domain "Valid Configuration" olunca SSL otomatik gelir.
+5. Search Console TXT kaydı bu durumda **Vercel → Domains → DNS Records** bölümüne eklenir.
+
+### Yol B: İsimtescil DNS'ini kullanmak
+
+1. İsimtescil panelinde domain için **DNS Yönetimi**'ni etkinleştirin (bölge yoksa destekten açtırın).
+2. Şu kayıtları ekleyin:
 
 | Tür | Ad (Host) | Değer | TTL |
 |---|---|---|---|
 | A | @ | `76.76.21.21` | 3600 |
 | CNAME | www | `cname.vercel-dns.com` | 3600 |
 
-4. Vercel panelinde (vercel.com → proje `lupus-veteriner` → Settings → Domains) iki domain de "Valid Configuration" olana kadar bekleyin (genelde 10 dk – birkaç saat). Vercel farklı bir değer gösterirse onu kullanın.
-5. SSL sertifikası Vercel tarafından otomatik verilir.
+3. Vercel → Settings → Domains → iki domaini ekleyin, `www`'yu ana domaine yönlendirin. Vercel farklı bir değer gösterirse onu kullanın.
+
+### Kontrol
+
+Terminalde (değer `76.76.21.21` veya Vercel IP'si dönmeli):
+
+```bash
+dig +short lupusveteriner.com
+```
+
+Site kanonik adresi `https://lupusveteriner.com` (www'suz). Site haritası, kanonik etiketler ve şema bu adrese göre üretiliyor; Vercel'de ana domain olarak bunu seçin.
 
 ## 2. Google Search Console
 

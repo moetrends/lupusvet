@@ -31,7 +31,6 @@ export const clinic = {
   vet: {
     name: 'Yunus Kurt',
     title: 'Veteriner Hekim',
-    instagram: 'https://www.instagram.com/ykurtt/',
     // Kaynak: Yunus Kurt'un doldurduğu bilgi formu (2026-11-21).
     alumniOf: 'Ankara Üniversitesi Veteriner Fakültesi' as string | undefined,
     graduationYear: 2015 as number | undefined,

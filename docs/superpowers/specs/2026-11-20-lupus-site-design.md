@@ -39,7 +39,7 @@ Başarısızlık sayılacaklar (çalışsa bile)
 | Telefon | 0537 211 50 05 | Maps, Instagram |
 | Saatler | Pzt–Cmt 09:00–19:30, Pazar 12:00–16:30 (Instagram: 16:00 → teyit bekliyor) | Maps |
 | Puan | 4,8 · 108 yorum | Maps |
-| Hekim | Yunus Kurt (kişisel Instagram: @ykurtt) | Vetimiz, Maps yorumları |
+| Hekim | Yunus Kurt | Vetimiz, Maps yorumları |
 | Ekip | Şükran Hanım (yorumda geçiyor), asistanlar | Maps yorumları |
 | Randevu | https://www.vetimiz.com/klinikler/lupus-veteriner-klinigi | Kullanıcı |
 | Instagram | https://www.instagram.com/lupus_vet/ | Kullanıcı |
